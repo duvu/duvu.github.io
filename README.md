@@ -1,4 +1,4 @@
-# Trang cá nhân của Dư Vũ
+# Trang cá nhân của Du Vu
 
 Đây là mã nguồn cho trang web cá nhân của tôi, được lưu trữ trên GitHub Pages.
 
