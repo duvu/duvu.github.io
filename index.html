@@ -3,44 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang cá nhân của Dư Vũ</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Trang cá nhân của Du Vu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Dư Vũ</h1>
-            <p>Chào mừng đến với trang cá nhân của tôi</p>
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center">DV</div>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#home" class="hover:text-blue-400 transition">Trang chủ</a></li>
+                <li><a href="#about" class="hover:text-blue-400 transition">Giới thiệu</a></li>
+                <li><a href="#skills" class="hover:text-blue-400 transition">Kỹ năng</a></li>
+                <li><a href="#projects" class="hover:text-blue-400 transition">Dự án</a></li>
+                <li><a href="#contact" class="hover:text-blue-400 transition">Liên hệ</a></li>
+            </ul>
+            <div class="md:hidden cursor-pointer menu-toggle">
+                <i class="fas fa-bars text-xl"></i>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden bg-gray-700 px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-blue-400">Trang chủ</a>
+            <a href="#about" class="block py-2 hover:text-blue-400">Giới thiệu</a>
+            <a href="#skills" class="block py-2 hover:text-blue-400">Kỹ năng</a>
+            <a href="#projects" class="block py-2 hover:text-blue-400">Dự án</a>
+            <a href="#contact" class="block py-2 hover:text-blue-400">Liên hệ</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="w-40 h-40 overflow-hidden rounded-full border-4 border-white shadow-xl">
+                    <img src="https://via.placeholder.com/200" alt="Du Vu" class="w-full h-full object-cover">
+                </div>
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2">Du Vu</h1>
+                    <p class="text-xl text-blue-100 mb-4">Developer | Designer | Creator</p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-github text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-facebook text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-        <section id="about">
-            <h2>Giới thiệu</h2>
-            <p>Xin chào! Tôi là Dư Vũ. Đây là trang web cá nhân của tôi.</p>
+    <main class="container mx-auto px-4 py-10">
+        <!-- About Section -->
+        <section id="about" class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+                <i class="fas fa-user mr-2 text-blue-600"></i> Giới thiệu
+            </h2>
+            <div class="text-gray-700">
+                <p class="mb-4">Xin chào! Tôi là Du Vu, một developer đam mê với công nghệ và sáng tạo. Tôi có kinh nghiệm trong phát triển web và mobile apps, với sự tập trung vào trải nghiệm người dùng và hiệu suất.</p>
+                <p>Tôi tin rằng sự đơn giản và rõ ràng là chìa khóa cho thiết kế tốt, và tôi áp dụng triết lý này vào tất cả các dự án của mình.</p>
+            </div>
         </section>
 
-        <section id="projects">
-            <h2>Dự án</h2>
-            <p>Một số dự án tôi đã thực hiện:</p>
-            <ul>
-                <li>Dự án 1</li>
-                <li>Dự án 2</li>
-                <li>Dự án 3</li>
-            </ul>
+        <!-- Skills Section -->
+        <section id="skills" class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+                <i class="fas fa-code mr-2 text-blue-600"></i> Kỹ năng
+            </h2>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700">HTML5/CSS3</span>
+                        <span class="text-sm text-gray-500">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700">JavaScript</span>
+                        <span class="text-sm text-gray-500">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700">Java</span>
+                        <span class="text-sm text-gray-500">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700">React.js</span>
+                        <span class="text-sm text-gray-500">75%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700">Node.js</span>
+                        <span class="text-sm text-gray-500">70%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Liên hệ</h2>
-            <p>Email: your.email@example.com</p>
-            <p>GitHub: <a href="https://github.com/duvu">github.com/duvu</a></p>
+        <!-- Projects Section -->
+        <section id="projects" class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                <i class="fas fa-project-diagram mr-2 text-blue-600"></i> Dự án
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Dự án 1" class="w-full h-48 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 1</h3>
+                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 1 và các công nghệ được sử dụng.</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-eye mr-1"></i> Xem
+                            </a>
+                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Dự án 2" class="w-full h-48 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 2</h3>
+                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 2 và các công nghệ được sử dụng.</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-eye mr-1"></i> Xem
+                            </a>
+                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Dự án 3" class="w-full h-48 object-cover">
+                    <div class="p-4 bg-white">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 3</h3>
+                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 3 và các công nghệ được sử dụng.</p>
+                        <div class="flex space-x-2">
+                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-eye mr-1"></i> Xem
+                            </a>
+                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
+                                <i class="fab fa-github mr-1"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                <i class="fas fa-envelope mr-2 text-blue-600"></i> Liên hệ
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="text-gray-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-envelope w-6 text-blue-600"></i>
+                        <span>Email: your.email@example.com</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-github w-6 text-blue-600"></i>
+                        <span>GitHub: <a href="https://github.com/duvu" class="text-blue-600 hover:underline">github.com/duvu</a></span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt w-6 text-blue-600"></i>
+                        <span>Địa điểm: Hà Nội, Việt Nam</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Gửi tin nhắn</h3>
+                    <form>
+                        <div class="mb-4">
+                            <input type="text" placeholder="Tên của bạn" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" placeholder="Email của bạn" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <textarea placeholder="Tin nhắn của bạn" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                            Gửi tin nhắn
+                        </button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Dư Vũ. Đã đăng ký bản quyền.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="mb-4 md:mb-0">&copy; 2023 Du Vu. Đã đăng ký bản quyền.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-github text-xl"></i></a>
+                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-facebook text-xl"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Menu toggle cho mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html> 
