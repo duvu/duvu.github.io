@@ -120,6 +120,32 @@
             </div>
         </section>
 
+        <!-- GitHub Stats Section -->
+        <section id="github-stats" class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+                <i class="fab fa-github mr-2 text-blue-600"></i> GitHub Stats
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col items-center">
+                    <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
+                         src="https://github-readme-stats.vercel.app/api?username=duvu&show_icons=true&theme=tokyonight" 
+                         alt="GitHub Stats">
+                    <p class="text-gray-600 text-sm text-center">Thống kê GitHub của tôi</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
+                         src="https://github-readme-stats.vercel.app/api/top-langs/?username=duvu&layout=compact&theme=tokyonight" 
+                         alt="Top Languages">
+                    <p class="text-gray-600 text-sm text-center">Các ngôn ngữ được sử dụng nhiều nhất</p>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-center">
+                <img class="w-full max-w-2xl rounded-lg shadow-md" 
+                     src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=duvu&theme=tokyonight" 
+                     alt="GitHub Contribution Graph">
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section id="projects" class="bg-white rounded-lg shadow-md p-6 mb-10">
             <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
@@ -190,6 +216,14 @@
                         <span>GitHub: <a href="https://github.com/duvu" class="text-blue-600 hover:underline">github.com/duvu</a></span>
                     </div>
                     <div class="flex items-center mb-4">
+                        <i class="fas fa-code-branch w-6 text-blue-600"></i>
+                        <span>Contributions: <a href="https://github.com/duvu?tab=repositories" class="text-blue-600 hover:underline">Xem các repositories</a></span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line w-6 text-blue-600"></i>
+                        <span>GitHub Stats: <a href="#github-stats" class="text-blue-600 hover:underline">Xem thống kê của tôi</a></span>
+                    </div>
+                    <div class="flex items-center mb-4">
                         <i class="fas fa-map-marker-alt w-6 text-blue-600"></i>
                         <span>Địa điểm: Hà Nội, Việt Nam</span>
                     </div>
@@ -234,6 +268,345 @@
         // Menu toggle cho mobile
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+
+        // Lấy dữ liệu GitHub
+        async function fetchGitHubData() {
+            try {
+                const username = 'duvu';
+                const userResponse = await fetch(`https://api.github.com/users/${username}`);
+                
+                if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    
+                    // Hiển thị thông tin cơ bản
+                    document.getElementById('github-followers').textContent = userData.followers;
+                    document.getElementById('github-repos').textContent = userData.public_repos;
+                    
+                    console.log('Đã tải dữ liệu người dùng GitHub:', userData);
+                    
+                    // Lấy danh sách tất cả repositories của người dùng
+                    const userRepos = await fetchUserRepositories(username);
+                    
+                    // Lấy danh sách tất cả organizations và repositories của chúng
+                    const { orgs, orgRepos } = await fetchAllOrganizationsWithRepos(username);
+                    
+                    // Hiển thị tất cả repositories (cả user và org)
+                    const allRepos = [...userRepos, ...orgRepos];
+                    displayRepositories(allRepos);
+                    
+                    // Hiển thị tất cả organizations
+                    displayOrganizations(orgs);
+                }
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu GitHub:', error);
+            }
+        }
+        
+        // Lấy repositories của người dùng
+        async function fetchUserRepositories(username) {
+            try {
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+                
+                if (reposResponse.ok) {
+                    const reposData = await reposResponse.json();
+                    console.log(`Đã tải ${reposData.length} repositories của người dùng:`, reposData);
+                    
+                    // Thêm thông tin nguồn gốc cho mỗi repository
+                    reposData.forEach(repo => {
+                        repo.source = 'user';
+                        repo.source_name = username;
+                    });
+                    
+                    return reposData;
+                }
+                return [];
+            } catch (error) {
+                console.error('Lỗi khi tải danh sách repositories của người dùng:', error);
+                return [];
+            }
+        }
+        
+        // Lấy tất cả organizations và repositories của chúng
+        async function fetchAllOrganizationsWithRepos(username) {
+            try {
+                const orgsResponse = await fetch(`https://api.github.com/users/${username}/orgs`);
+                
+                if (orgsResponse.ok) {
+                    const orgsData = await orgsResponse.json();
+                    console.log(`Đã tải ${orgsData.length} organizations:`, orgsData);
+                    
+                    // Lấy repositories của tất cả các organizations
+                    let allOrgRepos = [];
+                    
+                    // Sử dụng Promise.all để lấy repositories của tất cả organizations song song
+                    const orgReposPromises = orgsData.map(org => fetchOrganizationRepos(org.login));
+                    const orgReposResults = await Promise.all(orgReposPromises);
+                    
+                    // Gộp tất cả repositories từ các organizations
+                    orgReposResults.forEach(repos => {
+                        allOrgRepos = [...allOrgRepos, ...repos];
+                    });
+                    
+                    console.log(`Đã tải tổng cộng ${allOrgRepos.length} repositories từ các organizations`);
+                    
+                    return { orgs: orgsData, orgRepos: allOrgRepos };
+                }
+                return { orgs: [], orgRepos: [] };
+            } catch (error) {
+                console.error('Lỗi khi tải danh sách organizations:', error);
+                return { orgs: [], orgRepos: [] };
+            }
+        }
+        
+        // Lấy repositories của một organization
+        async function fetchOrganizationRepos(orgName) {
+            try {
+                const reposResponse = await fetch(`https://api.github.com/orgs/${orgName}/repos?per_page=100`);
+                
+                if (reposResponse.ok) {
+                    const reposData = await reposResponse.json();
+                    console.log(`Đã tải ${reposData.length} repositories của organization ${orgName}:`, reposData);
+                    
+                    // Thêm thông tin nguồn gốc cho mỗi repository
+                    reposData.forEach(repo => {
+                        repo.source = 'organization';
+                        repo.source_name = orgName;
+                    });
+                    
+                    return reposData;
+                }
+                return [];
+            } catch (error) {
+                console.error(`Lỗi khi tải danh sách repositories của organization ${orgName}:`, error);
+                return [];
+            }
+        }
+        
+        // Hiển thị thông tin repositories
+        function displayRepositories(repos) {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+            
+            // Tạo phần tử container cho repositories
+            const reposSection = document.createElement('div');
+            reposSection.className = 'mt-10';
+            reposSection.innerHTML = `
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">Tất cả Repositories (${repos.length})</h3>
+                <div class="overflow-auto max-h-96 border border-gray-200 rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50 sticky top-0">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Repository</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nguồn</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mô tả</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stars</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Forks</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ngôn ngữ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="repos-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            statsSection.appendChild(reposSection);
+            
+            // Thêm dữ liệu vào bảng
+            const reposTableBody = document.getElementById('repos-table-body');
+            repos.forEach(repo => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                
+                row.innerHTML = `
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline font-medium">
+                            ${repo.name}
+                        </a>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs rounded-full ${repo.source === 'user' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}">
+                            ${repo.source === 'user' ? 'User' : 'Org:'} ${repo.source_name}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3">
+                        ${repo.description ? repo.description : '<span class="text-gray-400">Không có mô tả</span>'}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="flex items-center">
+                            <i class="fas fa-code-branch text-gray-500 mr-1"></i> ${repo.forks_count}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs rounded-full ${repo.language ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}">
+                            ${repo.language || 'N/A'}
+                        </span>
+                    </td>
+                `;
+                
+                reposTableBody.appendChild(row);
+            });
+            
+            // Tìm số lượng repositories theo nguồn
+            const userReposCount = repos.filter(repo => repo.source === 'user').length;
+            const orgReposCount = repos.filter(repo => repo.source === 'organization').length;
+            
+            // Thêm tổng kết về repositories
+            const reposSummary = document.createElement('div');
+            reposSummary.className = 'mt-4 p-4 bg-gray-50 rounded-lg';
+            reposSummary.innerHTML = `
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm">Tổng số repos</p>
+                        <p class="text-xl font-bold text-blue-600">${repos.length} <span class="text-xs text-gray-500">(User: ${userReposCount}, Org: ${orgReposCount})</span></p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm">Tổng số stars</p>
+                        <p class="text-xl font-bold text-blue-600">${repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm">Tổng số forks</p>
+                        <p class="text-xl font-bold text-blue-600">${repos.reduce((sum, repo) => sum + repo.forks_count, 0)}</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-gray-600 text-sm">Ngôn ngữ phổ biến</p>
+                        <p class="text-xl font-bold text-blue-600">${getMostUsedLanguage(repos)}</p>
+                    </div>
+                </div>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">Top 5 repositories (stars)</h4>
+                        <ul class="space-y-1">
+                            ${getTopRepositories(repos, 'stars').map(repo => `
+                                <li class="flex items-center justify-between p-2 bg-white rounded-lg border border-gray-200">
+                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">
+                                        ${repo.source_name}/${repo.name}
+                                    </a>
+                                    <span class="flex items-center text-sm">
+                                        <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
+                                    </span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">Top 5 repositories (forks)</h4>
+                        <ul class="space-y-1">
+                            ${getTopRepositories(repos, 'forks').map(repo => `
+                                <li class="flex items-center justify-between p-2 bg-white rounded-lg border border-gray-200">
+                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">
+                                        ${repo.source_name}/${repo.name}
+                                    </a>
+                                    <span class="flex items-center text-sm">
+                                        <i class="fas fa-code-branch text-gray-500 mr-1"></i> ${repo.forks_count}
+                                    </span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            reposSection.appendChild(reposSummary);
+        }
+        
+        // Lấy top repositories theo tiêu chí
+        function getTopRepositories(repos, criteria, limit = 5) {
+            let sortedRepos = [...repos];
+            
+            if (criteria === 'stars') {
+                sortedRepos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+            } else if (criteria === 'forks') {
+                sortedRepos.sort((a, b) => b.forks_count - a.forks_count);
+            }
+            
+            return sortedRepos.slice(0, limit);
+        }
+        
+        // Hiển thị thông tin organizations
+        function displayOrganizations(orgs) {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection || orgs.length === 0) return;
+            
+            // Tạo phần tử container cho organizations
+            const orgsSection = document.createElement('div');
+            orgsSection.className = 'mt-10';
+            orgsSection.innerHTML = `
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">Organizations (${orgs.length})</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    ${orgs.map(org => `
+                        <a href="https://github.com/${org.login}" target="_blank" 
+                           class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:shadow-md transition">
+                            <img src="${org.avatar_url}" class="w-16 h-16 rounded-full mb-2" alt="${org.login}">
+                            <p class="text-blue-600 hover:underline font-medium">${org.login}</p>
+                        </a>
+                    `).join('')}
+                </div>
+            `;
+            
+            statsSection.appendChild(orgsSection);
+        }
+        
+        // Tìm ngôn ngữ được sử dụng nhiều nhất
+        function getMostUsedLanguage(repos) {
+            const languages = repos.map(repo => repo.language).filter(Boolean);
+            if (languages.length === 0) return 'N/A';
+            
+            const languageCounts = languages.reduce((counts, language) => {
+                counts[language] = (counts[language] || 0) + 1;
+                return counts;
+            }, {});
+            
+            let mostUsedLanguage = '';
+            let maxCount = 0;
+            
+            for (const language in languageCounts) {
+                if (languageCounts[language] > maxCount) {
+                    mostUsedLanguage = language;
+                    maxCount = languageCounts[language];
+                }
+            }
+            
+            return mostUsedLanguage;
+        }
+
+        // Thêm các phần tử để hiển thị thông tin
+        function addGitHubInfoElements() {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'mt-6 flex flex-wrap justify-center gap-6';
+            infoDiv.innerHTML = `
+                <div class="bg-gray-100 p-4 rounded-lg text-center w-40">
+                    <p class="text-gray-600">Followers</p>
+                    <p id="github-followers" class="text-2xl font-bold text-blue-600">-</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center w-40">
+                    <p class="text-gray-600">Repositories</p>
+                    <p id="github-repos" class="text-2xl font-bold text-blue-600">-</p>
+                </div>
+            `;
+            
+            // Thêm vào sau ảnh đồ thị
+            const lastImgContainer = statsSection.querySelector('.mt-8');
+            if (lastImgContainer) {
+                statsSection.insertBefore(infoDiv, lastImgContainer.nextSibling);
+            } else {
+                statsSection.appendChild(infoDiv);
+            }
+        }
+
+        // Chạy khi trang đã tải
+        document.addEventListener('DOMContentLoaded', function() {
+            addGitHubInfoElements();
+            fetchGitHubData();
         });
     </script>
 </body>
