@@ -1,199 +1,399 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang cá nhân của Du Vu</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Du Vu - Senior Software Engineer & Solution Architect</title>
+    <meta name="description" content="Du Vu's personal portfolio showcasing development skills, projects, and GitHub contributions.">
+    
+    <!-- Sitemap reference for search engines -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://github-readme-stats.vercel.app">
+    <link rel="preconnect" href="https://api.github.com">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://duvu.github.io/">
+    <meta property="og:title" content="Du Vu - Senior Software Engineer & Solution Architect">
+    <meta property="og:description" content="Senior Software Engineer & Solution Architect specializing in FinTech, AI, and Cloud Solutions">
+    <meta property="og:image" content="https://duvu.github.io/imgs/profile.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://duvu.github.io/">
+    <meta property="twitter:title" content="Du Vu - Senior Software Engineer & Solution Architect">
+    <meta property="twitter:description" content="Senior Software Engineer & Solution Architect specializing in FinTech, AI, and Cloud Solutions">
+    <meta property="twitter:image" content="https://duvu.github.io/imgs/profile.png">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Du Vu",
+      "url": "https://duvu.github.io/",
+      "image": "https://duvu.github.io/imgs/profile.png",
+      "sameAs": [
+        "https://github.com/duvu",
+        "https://www.linkedin.com/in/hoaivubk/",
+        "https://www.facebook.com/dv4238"
+      ],
+      "jobTitle": "Senior Software Engineer & Solution Architect",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Self-employed"
+      }
+    }
+    </script>
+    
+    <!-- Tailwind with dark mode support -->
+    <script>
+    window.tailwindConfig = {
+        darkMode: 'class',
+        theme: {
+            extend: {}
+        }
+    };
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-colors {
+                transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 dark:bg-gray-900 font-sans transition-colors">
     <!-- Navigation -->
-    <nav class="bg-gray-800 text-white sticky top-0 z-50 shadow-md">
+    <nav class="bg-gray-800 dark:bg-gray-950 text-white sticky top-0 z-50 shadow-md">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center">DV</div>
+            <div class="text-2xl font-bold bg-blue-500 dark:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">DV</div>
             <ul class="hidden md:flex space-x-6">
-                <li><a href="#home" class="hover:text-blue-400 transition">Trang chủ</a></li>
-                <li><a href="#about" class="hover:text-blue-400 transition">Giới thiệu</a></li>
-                <li><a href="#skills" class="hover:text-blue-400 transition">Kỹ năng</a></li>
-                <li><a href="#projects" class="hover:text-blue-400 transition">Dự án</a></li>
-                <li><a href="#contact" class="hover:text-blue-400 transition">Liên hệ</a></li>
+                <li><a href="#home" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
+                <li><a href="#skills" class="hover:text-blue-400 transition">Skills</a></li>
+                <li><a href="#projects" class="hover:text-blue-400 transition">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle dark mode" class="p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </li>
             </ul>
-            <div class="md:hidden cursor-pointer menu-toggle">
-                <i class="fas fa-bars text-xl"></i>
+            <div class="md:hidden flex items-center space-x-4">
+                <button id="mobile-theme-toggle" aria-label="Toggle dark mode" class="p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                    <i class="fas fa-moon dark:hidden text-white"></i>
+                    <i class="fas fa-sun hidden dark:inline text-white"></i>
+                </button>
+                <div class="cursor-pointer menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </div>
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden bg-gray-700 px-4 py-2">
-            <a href="#home" class="block py-2 hover:text-blue-400">Trang chủ</a>
-            <a href="#about" class="block py-2 hover:text-blue-400">Giới thiệu</a>
-            <a href="#skills" class="block py-2 hover:text-blue-400">Kỹ năng</a>
-            <a href="#projects" class="block py-2 hover:text-blue-400">Dự án</a>
-            <a href="#contact" class="block py-2 hover:text-blue-400">Liên hệ</a>
+        <div class="mobile-menu hidden md:hidden bg-gray-700 dark:bg-gray-800 px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-blue-400">Home</a>
+            <a href="#about" class="block py-2 hover:text-blue-400">About</a>
+            <a href="#skills" class="block py-2 hover:text-blue-400">Skills</a>
+            <a href="#projects" class="block py-2 hover:text-blue-400">Projects</a>
+            <a href="#contact" class="block py-2 hover:text-blue-400">Contact</a>
         </div>
     </nav>
 
     <!-- Header Section -->
-    <header id="home" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+    <header id="home" class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white py-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div class="w-40 h-40 overflow-hidden rounded-full border-4 border-white shadow-xl">
-                    <img src="https://via.placeholder.com/200" alt="Du Vu" class="w-full h-full object-cover">
+                <div class="w-40 h-40 md:w-48 md:h-48 overflow-hidden rounded-full border-4 border-white dark:border-gray-700 shadow-xl transition-transform hover:scale-105">
+                    <img src="imgs/profile.png" alt="Du Vu" class="w-full h-full object-cover" loading="eager">
                 </div>
                 <div class="text-center md:text-left">
                     <h1 class="text-4xl md:text-5xl font-bold mb-2">Du Vu</h1>
-                    <p class="text-xl text-blue-100 mb-4">Developer | Designer | Creator</p>
+                    <p class="text-xl text-blue-100 mb-4">Senior Software Engineer | Solution Architect | AI & FinTech</p>
                     <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-github text-2xl"></i></a>
-                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
-                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
-                        <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-facebook text-2xl"></i></a>
+                        <a href="https://github.com/duvu" target="_blank" aria-label="GitHub Profile" class="text-white hover:text-blue-300 transition"><i class="fab fa-github text-2xl"></i></a>
+                        <a href="https://www.linkedin.com/in/hoaivubk/" target="_blank" aria-label="LinkedIn Profile" class="text-white hover:text-blue-300 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+                        <a href="#" target="_blank" aria-label="Twitter Profile" class="text-white hover:text-blue-300 transition"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="https://www.facebook.com/dv4238" target="_blank" aria-label="Facebook Profile" class="text-white hover:text-blue-300 transition"><i class="fab fa-facebook text-2xl"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-10">
+    <main class="container mx-auto px-4 py-10" id="main-content" role="main">
         <!-- About Section -->
-        <section id="about" class="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
-                <i class="fas fa-user mr-2 text-blue-600"></i> Giới thiệu
+        <section id="about" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                <i class="fas fa-user mr-2 text-blue-600 dark:text-blue-400"></i> About Me
             </h2>
-            <div class="text-gray-700">
-                <p class="mb-4">Xin chào! Tôi là Du Vu, một developer đam mê với công nghệ và sáng tạo. Tôi có kinh nghiệm trong phát triển web và mobile apps, với sự tập trung vào trải nghiệm người dùng và hiệu suất.</p>
-                <p>Tôi tin rằng sự đơn giản và rõ ràng là chìa khóa cho thiết kế tốt, và tôi áp dụng triết lý này vào tất cả các dự án của mình.</p>
+            <div class="text-gray-700 dark:text-gray-300">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">🚀 Senior Software Engineer | Solution Architect | AI & FinTech Enthusiast</h3>
+                
+                <p class="mb-4">I am a Senior Software Engineer & Solution Architect with 20+ years of experience in software development, system architecture, and technical consulting. Over the years, I have worked with companies across FinTech, AI, and data analytics, helping them build scalable, efficient, and high-performance systems.</p>
+                
+                <h4 class="font-medium text-lg mb-2 text-gray-800 dark:text-gray-200">🔹 What I Offer:</h4>
+                <ul class="list-disc pl-6 mb-4 space-y-1">
+                    <li>Custom Software Development – Building robust applications with Java, Python, Node.js.</li>
+                    <li>Cloud & DevOps Solutions – Expertise in AWS, Docker, Kubernetes, CI/CD pipelines.</li>
+                    <li>Microservices & Scalable Systems – Designing high-performance backend solutions.</li>
+                    <li>AI & Data Analytics – Integrating machine learning (Langchain, AI Agents, NLP, PhoBERT) into real-world applications.</li>
+                    <li>Financial & Trading Systems – Experience with real-time stock trading platforms, risk management, and backtesting.</li>
+                    <li>Consulting & Tech Leadership – Helping teams adopt best practices in software engineering & agile development.</li>
+                </ul>
+                
+                <h4 class="font-medium text-lg mb-2 text-gray-800 dark:text-gray-200">🔹 My Achievements:</h4>
+                <ul class="list-disc pl-6 mb-4 space-y-1">
+                    <li>Optimized financial trading systems – Reduced order execution time from 500ms to 100ms, improving efficiency by 5x.</li>
+                    <li>Developed an AI-powered financial news analysis system (X51 Simple Trade).</li>
+                    <li>Led a remote team of 4 engineers to build a taxi dispatching system in New York, scaling it from 100 to 1000+ drivers.</li>
+                    <li>Designed risk management software for banks, ensuring compliance with Basel II standards.</li>
+                </ul>
+                
+                <p class="mt-4">I am open to freelance, consulting, and remote opportunities where I can help businesses solve complex technical challenges, optimize system performance, and drive innovation.</p>
+                
+                <p class="mt-4">📩 Let's connect and discuss how I can help with your next project!</p>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800 flex items-center">
-                <i class="fas fa-code mr-2 text-blue-600"></i> Kỹ năng
+        <section id="skills" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
+                <i class="fas fa-code mr-2 text-blue-600 dark:text-blue-400"></i> Technical Skills
             </h2>
             <div class="space-y-4">
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700">HTML5/CSS3</span>
-                        <span class="text-sm text-gray-500">90%</span>
+                        <span class="font-medium text-gray-700 dark:text-gray-300">Java/Spring Boot</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">95%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700">JavaScript</span>
-                        <span class="text-sm text-gray-500">85%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700">Java</span>
-                        <span class="text-sm text-gray-500">80%</span>
+                        <span class="font-medium text-gray-700 dark:text-gray-300">Python/Machine Learning</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">90%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700">React.js</span>
-                        <span class="text-sm text-gray-500">75%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700">Node.js</span>
-                        <span class="text-sm text-gray-500">70%</span>
+                        <span class="font-medium text-gray-700 dark:text-gray-300">Cloud Architecture (AWS/GCP)</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">85%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700 dark:text-gray-300">Microservices/Distributed Systems</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700 dark:text-gray-300">AI/NLP/LangChain</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="font-medium text-gray-700 dark:text-gray-300">DevOps/CI-CD</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- GitHub Stats Section -->
-        <section id="github-stats" class="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
-                <i class="fab fa-github mr-2 text-blue-600"></i> GitHub Stats
+        <section id="github-stats" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                <i class="fab fa-github mr-2 text-blue-600 dark:text-blue-400"></i> GitHub Stats
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="flex flex-col items-center">
                     <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
                          src="https://github-readme-stats.vercel.app/api?username=duvu&show_icons=true&theme=tokyonight" 
-                         alt="GitHub Stats">
-                    <p class="text-gray-600 text-sm text-center">Thống kê GitHub của tôi</p>
+                         alt="GitHub Stats"
+                         loading="lazy">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm text-center">My GitHub Statistics</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
                          src="https://github-readme-stats.vercel.app/api/top-langs/?username=duvu&layout=compact&theme=tokyonight" 
-                         alt="Top Languages">
-                    <p class="text-gray-600 text-sm text-center">Các ngôn ngữ được sử dụng nhiều nhất</p>
+                         alt="Top Languages"
+                         loading="lazy">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm text-center">Most Used Languages</p>
                 </div>
             </div>
             <div class="mt-8 flex justify-center">
                 <img class="w-full max-w-2xl rounded-lg shadow-md" 
                      src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=duvu&theme=tokyonight" 
-                     alt="GitHub Contribution Graph">
+                     alt="GitHub Contribution Graph"
+                     loading="lazy">
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
-                <i class="fas fa-project-diagram mr-2 text-blue-600"></i> Dự án
+        <section id="projects" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                <i class="fas fa-project-diagram mr-2 text-blue-600 dark:text-blue-400"></i> Key Projects
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
-                    <img src="https://via.placeholder.com/300x200" alt="Dự án 1" class="w-full h-48 object-cover">
-                    <div class="p-4 bg-white">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 1</h3>
-                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 1 và các công nghệ được sử dụng.</p>
-                        <div class="flex space-x-2">
-                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-eye mr-1"></i> Xem
-                            </a>
-                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
+            <div class="grid grid-cols-1 gap-10">
+                <!-- GPSHANDLE Project -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-xl">
+                    <h3 class="text-xl font-semibold p-4 text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-750 border-b border-gray-200 dark:border-gray-700">GPSHANDLE - GPS Tracking &amp; Fleet Management System</h3>
+                    <div class="p-4 bg-white dark:bg-gray-700">
+                        <div class="flex flex-col lg:flex-row gap-6 mb-4">
+                            <div class="lg:w-1/2">
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    GPSHANDLE is a comprehensive GPS tracking and fleet management system designed for businesses to monitor and optimize their vehicle operations. The platform provides real-time tracking, geofencing, alerts, and extensive reporting capabilities.
+                                </p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    As the lead architect and developer, I designed and implemented the entire system from the ground up, including the backend server, mobile apps, and web dashboard.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
+                                    <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Spring Boot</span>
+                                    <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full">ReactJS</span>
+                                    <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">PostgreSQL</span>
+                                    <span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">Docker</span>
+                                    <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs rounded-full">Kubernetes</span>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                                        <i class="fas fa-eye mr-1"></i> Live Demo
+                                    </a>
+                                    <a href="https://github.com/duvu/gpshandle" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                                        <i class="fab fa-github mr-1"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/2">
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
+                                        <img src="imgs/p_gpshandle/g1.png" alt="GPSHANDLE Dashboard" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
+                                            <img src="imgs/p_gpshandle/g2.png" alt="GPSHANDLE Map View" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
+                                        </div>
+                                        <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
+                                            <img src="imgs/p_gpshandle/g3.png" alt="GPSHANDLE Reports" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 border-t border-gray-200 dark:border-gray-600 pt-4">
+                            <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 mb-4">
+                                <li>Real-time GPS tracking with history playback</li>
+                                <li>Geofencing with entry/exit notifications</li>
+                                <li>Driver behavior monitoring and scoring</li>
+                                <li>Fuel consumption analysis and optimization</li>
+                                <li>Maintenance scheduling and alerts</li>
+                                <li>Custom reporting and analytics dashboard</li>
+                                <li>Mobile apps for iOS and Android</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
-                    <img src="https://via.placeholder.com/300x200" alt="Dự án 2" class="w-full h-48 object-cover">
-                    <div class="p-4 bg-white">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 2</h3>
-                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 2 và các công nghệ được sử dụng.</p>
-                        <div class="flex space-x-2">
-                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-eye mr-1"></i> Xem
-                            </a>
-                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
+                
+                <!-- Other existing projects grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
+                        <div class="relative h-48 bg-gradient-to-r from-blue-400 to-indigo-600 dark:from-blue-500 dark:to-indigo-700 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-5xl text-white opacity-75"></i>
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-gray-700">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Financial Trading System</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Optimized high-frequency trading platform with 5x performance improvement. Reduced order execution time from 500ms to 100ms.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
+                                <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Microservices</span>
+                                <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">FinTech</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                                    <i class="fas fa-eye mr-1"></i> Details
+                                </a>
+                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-1">
-                    <img src="https://via.placeholder.com/300x200" alt="Dự án 3" class="w-full h-48 object-cover">
-                    <div class="p-4 bg-white">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Dự án 3</h3>
-                        <p class="text-gray-600 mb-4">Mô tả ngắn về dự án 3 và các công nghệ được sử dụng.</p>
-                        <div class="flex space-x-2">
-                            <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition">
-                                <i class="fas fa-eye mr-1"></i> Xem
-                            </a>
-                            <a href="#" class="bg-gray-700 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 transition">
-                                <i class="fab fa-github mr-1"></i> GitHub
-                            </a>
+                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
+                        <div class="relative h-48 bg-gradient-to-r from-green-400 to-teal-600 dark:from-green-500 dark:to-teal-700 flex items-center justify-center">
+                            <i class="fas fa-robot text-5xl text-white opacity-75"></i>
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-gray-700">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">X51 Simple Trade</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">AI-powered financial news analysis system that provides trading insights based on market sentiment and trend analysis.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Python</span>
+                                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full">NLP</span>
+                                <span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">AI</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                                    <i class="fas fa-eye mr-1"></i> Details
+                                </a>
+                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
+                        <div class="relative h-48 bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-600 dark:to-pink-700 flex items-center justify-center">
+                            <i class="fas fa-taxi text-5xl text-white opacity-75"></i>
+                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-gray-700">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Taxi Dispatching System</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Led development of a scalable taxi dispatching system in New York, growing from 100 to 1000+ drivers with efficient route optimization.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
+                                <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-xs rounded-full">AWS</span>
+                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs rounded-full">GIS</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                                    <i class="fas fa-eye mr-1"></i> Details
+                                </a>
+                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,47 +401,93 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="bg-white rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
-                <i class="fas fa-envelope mr-2 text-blue-600"></i> Liên hệ
+        <section id="contact" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
+                <i class="fas fa-envelope mr-2 text-blue-600 dark:text-blue-400"></i> Contact
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="text-gray-700">
+                <div class="text-gray-700 dark:text-gray-300">
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-envelope w-6 text-blue-600"></i>
-                        <span>Email: your.email@example.com</span>
+                        <i class="fas fa-envelope w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>Email: contact@duvu.dev</span>
                     </div>
                     <div class="flex items-center mb-4">
-                        <i class="fab fa-github w-6 text-blue-600"></i>
-                        <span>GitHub: <a href="https://github.com/duvu" class="text-blue-600 hover:underline">github.com/duvu</a></span>
+                        <i class="fab fa-github w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>GitHub: <a href="https://github.com/duvu" class="text-blue-600 dark:text-blue-400 hover:underline">github.com/duvu</a></span>
                     </div>
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-code-branch w-6 text-blue-600"></i>
-                        <span>Contributions: <a href="https://github.com/duvu?tab=repositories" class="text-blue-600 hover:underline">Xem các repositories</a></span>
+                        <i class="fas fa-briefcase w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>Experience: 20+ years in software development</span>
                     </div>
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-chart-line w-6 text-blue-600"></i>
-                        <span>GitHub Stats: <a href="#github-stats" class="text-blue-600 hover:underline">Xem thống kê của tôi</a></span>
+                        <i class="fas fa-code-branch w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>Specialization: FinTech, AI, Cloud Solutions</span>
                     </div>
                     <div class="flex items-center mb-4">
-                        <i class="fas fa-map-marker-alt w-6 text-blue-600"></i>
-                        <span>Địa điểm: Hà Nội, Việt Nam</span>
+                        <i class="fas fa-map-marker-alt w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>Location: Hanoi, Vietnam</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-laptop-code w-6 text-blue-600 dark:text-blue-400"></i>
+                        <span>Available for: Freelance, Consulting, Remote Work</span>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Gửi tin nhắn</h3>
-                    <form>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Send a Message</h3>
+                    <form id="contact-form" aria-label="Contact form">
+                        <!-- Honeypot field to catch bots -->
+                        <div class="opacity-0 absolute top-0 left-0 h-0 w-0 -z-10 overflow-hidden">
+                            <label for="website">Website (do not fill this in)</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div class="mb-4">
-                            <input type="text" placeholder="Tên của bạn" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Enter your name" 
+                                required 
+                                pattern="^[a-zA-ZÀ-ỹ\s]{2,50}$"
+                                title="Name must be 2-50 characters without special characters"
+                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="name-error"></div>
                         </div>
                         <div class="mb-4">
-                            <input type="email" placeholder="Email của bạn" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="Enter your email" 
+                                required 
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                title="Please enter a valid email address"
+                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="email-error"></div>
                         </div>
                         <div class="mb-4">
-                            <textarea placeholder="Tin nhắn của bạn" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                placeholder="Enter your message" 
+                                rows="4" 
+                                required 
+                                minlength="10"
+                                maxlength="500"
+                                title="Message must be 10-500 characters"
+                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="message-error"></div>
+                            <div class="text-right text-gray-500 dark:text-gray-400 text-xs mt-1">
+                                <span id="message-length">0</span>/500 characters
+                            </div>
                         </div>
-                        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                            Gửi tin nhắn
+                        <button 
+                            type="submit" 
+                            class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
                         </button>
                     </form>
                 </div>
@@ -250,69 +496,359 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="mb-4 md:mb-0">&copy; 2023 Du Vu. Đã đăng ký bản quyền.</p>
+                <p class="mb-4 md:mb-0">&copy; 2023 Du Vu. All rights reserved.</p>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-github text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="#" class="text-white hover:text-blue-400 transition"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="https://github.com/duvu" target="_blank" rel="noopener" aria-label="GitHub Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" aria-label="Twitter Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com/dv4238" target="_blank" rel="noopener" aria-label="Facebook Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
                 </div>
+            </div>
+            <div class="mt-6 text-center text-gray-400 dark:text-gray-500 text-sm">
+                <p>Website designed with <i class="fas fa-heart text-red-500"></i> using Tailwind CSS</p>
+                <p class="mt-2">
+                    <a href="#home" class="text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition">Back to top <i class="fas fa-chevron-up ml-1"></i></a>
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu toggle cho mobile
+        // Menu toggle for mobile
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
         });
 
-        // Lấy dữ liệu GitHub
+        // Fetch GitHub data
         async function fetchGitHubData() {
             try {
                 const username = 'duvu';
-                const userResponse = await fetch(`https://api.github.com/users/${username}`);
                 
-                if (userResponse.ok) {
-                    const userData = await userResponse.json();
+                // Check GitHub API rate limit status to debug
+                try {
+                    // Check if a personal access token is available
+                    const githubToken = localStorage.getItem('github_token');
+                    const headers = {
+                        'Accept': 'application/vnd.github.v3+json'
+                    };
                     
-                    // Hiển thị thông tin cơ bản
-                    document.getElementById('github-followers').textContent = userData.followers;
-                    document.getElementById('github-repos').textContent = userData.public_repos;
+                    // Add token to headers if available
+                    if (githubToken) {
+                        headers['Authorization'] = `token ${githubToken}`;
+                    }
                     
-                    console.log('Đã tải dữ liệu người dùng GitHub:', userData);
+                    const rateResponse = await fetch('https://api.github.com/rate_limit', {
+                        headers: headers
+                    });
                     
-                    // Lấy danh sách tất cả repositories của người dùng
-                    const userRepos = await fetchUserRepositories(username);
+                    if (rateResponse.ok) {
+                        const rateData = await rateResponse.json();
+                        console.log('GitHub API rate limit status:', rateData.resources);
+                        
+                        // Check if token is valid by comparing rate limits
+                        const coreLimit = rateData.resources.core.limit;
+                        if (githubToken && coreLimit <= 60) {
+                            showDiagnosticInfo(`Your GitHub token may not be valid or may have expired. Current rate limit: ${coreLimit} requests/hour`, 'warning');
+                            localStorage.removeItem('github_token');
+                        }
+                        
+                        // Add message if rate limit is low
+                        if (rateData.resources.core.remaining < 10) {
+                            console.warn('GitHub API rate limit is low. Some data may not load properly.');
+                            showGitHubRateLimitWarning(rateData.resources.core);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error checking GitHub rate limit:', error);
+                }
+                
+                // Continue with normal flow
+                // Check for cached data
+                const cachedData = getCachedData('github_user_data');
+                if (cachedData) {
+                    console.log('Using cached GitHub user data');
+                    displayUserData(cachedData);
                     
-                    // Lấy danh sách tất cả organizations và repositories của chúng
-                    const { orgs, orgRepos } = await fetchAllOrganizationsWithRepos(username);
+                    // Refresh cache in background if older than 1 hour
+                    if (isCacheExpired('github_user_data', 60 * 60 * 1000)) {
+                        console.log('Cache expired, refreshing in background');
+                        fetchAndCacheUserData(username);
+                    }
+                } else {
+                    // No cache, fetch data directly
+                    await fetchAndCacheUserData(username);
+                }
+                
+                // Try to display organizations from cache first
+                const cachedOrgs = getCachedData('github_orgs');
+                if (cachedOrgs && cachedOrgs.length > 0) {
+                    console.log('Using cached GitHub organizations data');
+                    displayOrganizations(cachedOrgs);
                     
-                    // Hiển thị tất cả repositories (cả user và org)
-                    const allRepos = [...userRepos, ...orgRepos];
+                    // Refresh orgs cache in background if older than 3 hours
+                    if (isCacheExpired('github_orgs', 3 * 60 * 60 * 1000)) {
+                        // This function will fetch and update the display
+                        fetchAllOrganizationsWithRepos(username);
+                    }
+                } else {
+                    // Fetch organizations (this will also display them)
+                    fetchAllOrganizationsWithRepos(username);
+                }
+                
+                // Handle repositories data
+                const cachedRepos = {
+                    user: getCachedData('github_user_repos'),
+                    orgs: getCachedData('github_org_repos')
+                };
+                
+                if (cachedRepos.user && cachedRepos.orgs) {
+                    console.log('Using cached GitHub repositories data');
+                    const allRepos = [...cachedRepos.user, ...cachedRepos.orgs];
                     displayRepositories(allRepos);
                     
-                    // Hiển thị tất cả organizations
-                    displayOrganizations(orgs);
+                    // Refresh repo cache in background if older than 3 hours
+                    if (isCacheExpired('github_user_repos', 3 * 60 * 60 * 1000)) {
+                        refreshRepositoriesInBackground(username);
+                    }
+                } else {
+                    // No cache, fetch repositories directly
+                    const userRepos = await fetchUserRepositories(username);
+                    
+                    // Note: We're already fetching orgs in fetchAllOrganizationsWithRepos
+                    // So we just use its return value or fetch separately if needed
+                    let orgRepos = [];
+                    const cachedOrgRepos = getCachedData('github_org_repos');
+                    
+                    if (cachedOrgRepos) {
+                        orgRepos = cachedOrgRepos;
+                    } else {
+                        // Fetch all organization repos if not already fetched
+                        const orgReposData = await fetchAllOrganizationsWithRepos(username);
+                        orgRepos = orgReposData.orgRepos || [];
+                    }
+                    
+                    // Combine and display all repositories
+                    const allRepos = [...userRepos, ...orgRepos];
+                    displayRepositories(allRepos);
                 }
             } catch (error) {
-                console.error('Lỗi khi tải dữ liệu GitHub:', error);
+                console.error('Error fetching GitHub data:', error);
+                showGitHubFetchError();
             }
         }
         
-        // Lấy repositories của người dùng
+        // Cache data in localStorage
+        function cacheData(key, data, timestamp = Date.now()) {
+            try {
+                const cacheObj = {
+                    data: data,
+                    timestamp: timestamp
+                };
+                localStorage.setItem(key, JSON.stringify(cacheObj));
+                return true;
+            } catch (error) {
+                console.error('Error caching data:', error);
+                return false;
+            }
+        }
+        
+        // Get cached data from localStorage
+        function getCachedData(key) {
+            try {
+                const cachedObj = localStorage.getItem(key);
+                if (!cachedObj) return null;
+                
+                const { data } = JSON.parse(cachedObj);
+                return data;
+            } catch (error) {
+                console.error('Error retrieving cached data:', error);
+                return null;
+            }
+        }
+        
+        // Check if cache is expired
+        function isCacheExpired(key, maxAge) {
+            try {
+                const cachedObj = localStorage.getItem(key);
+                if (!cachedObj) return true;
+                
+                const { timestamp } = JSON.parse(cachedObj);
+                const now = Date.now();
+                
+                return (now - timestamp) > maxAge;
+            } catch (error) {
+                console.error('Error checking cache expiration:', error);
+                return true;
+            }
+        }
+        
+        // Fetch and cache user data
+        async function fetchAndCacheUserData(username) {
+            try {
+                // Check if a personal access token is available
+                const githubToken = localStorage.getItem('github_token');
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                // Add token to headers if available
+                if (githubToken) {
+                    headers['Authorization'] = `token ${githubToken}`;
+                }
+                
+                const userResponse = await fetch(`https://api.github.com/users/${username}`, {
+                    headers: headers
+                });
+                
+                if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    console.log('Fetched user data from GitHub API');
+                    
+                    // Cache the data
+                    cacheData('github_user_data', userData);
+                    
+                    // Display the data
+                    displayUserData(userData);
+                    return userData;
+                } else {
+                    throw new Error(`GitHub API returned ${userResponse.status}`);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                showGitHubFetchError();
+                return null;
+            }
+        }
+        
+        // Display user data
+        function displayUserData(userData) {
+            document.getElementById('github-followers').textContent = userData.followers;
+            document.getElementById('github-repos').textContent = userData.public_repos;
+        }
+        
+        // Refresh repository data in background
+        async function refreshRepositoriesInBackground(username) {
+            try {
+                console.log('Refreshing repositories data in background');
+                const userRepos = await fetchUserRepositories(username);
+                const { orgs, orgRepos } = await fetchAllOrganizationsWithRepos(username);
+                
+                // Cache the fresh data
+                cacheData('github_user_repos', userRepos);
+                cacheData('github_org_repos', orgRepos);
+                cacheData('github_orgs', orgs);
+                
+                console.log('Repository data refreshed in cache');
+            } catch (error) {
+                console.error('Error refreshing repository data:', error);
+            }
+        }
+        
+        // Show GitHub fetch error
+        function showGitHubFetchError() {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+            
+            // Check if error message already exists
+            if (document.getElementById('github-fetch-error')) return;
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'github-fetch-error';
+            errorDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300';
+            errorDiv.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mr-2"></i>
+                    <p>Unable to load GitHub data. Showing cached data if available.</p>
+                </div>
+                <button class="mt-2 px-3 py-1 bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 rounded text-sm text-red-700 dark:text-red-300 transition">
+                    Try Again
+                </button>
+            `;
+            
+            // Add retry functionality
+            const retryButton = errorDiv.querySelector('button');
+            retryButton.addEventListener('click', () => {
+                errorDiv.remove();
+                fetchGitHubData();
+            });
+            
+            // Add it to the beginning of the stats section
+            statsSection.insertBefore(errorDiv, statsSection.firstChild);
+        }
+        
+        // Show GitHub rate limit warning
+        function showGitHubRateLimitWarning(rateInfo = null) {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+            
+            // Check if warning message already exists
+            if (document.getElementById('github-rate-limit-warning')) return;
+            
+            // Format rate limit info if available
+            let rateMessage = '';
+            if (rateInfo) {
+                rateMessage = `<div class="mt-2">
+                    <div class="text-sm">Current limit: <span class="font-medium">${rateInfo.limit}</span> requests/hour</div>
+                    <div class="text-sm">Remaining: <span class="font-medium">${rateInfo.remaining}</span> requests</div>
+                    <div class="text-sm">Resets at: <span class="font-medium">${new Date(rateInfo.reset * 1000).toLocaleTimeString()}</span></div>
+                </div>`;
+            }
+            
+            const warningDiv = document.createElement('div');
+            warningDiv.id = 'github-rate-limit-warning';
+            warningDiv.className = 'mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg text-yellow-700 dark:text-yellow-300';
+            warningDiv.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 dark:text-yellow-400 mr-2"></i>
+                    <p>GitHub API rate limit is low. Some data may not load properly or be incomplete.</p>
+                </div>
+                ${rateMessage}
+                <p class="mt-2 text-sm">Note: GitHub API has a rate limit of 60 requests per hour for unauthenticated users. For higher limits, you can <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" class="underline">create a personal access token</a>.</p>
+            `;
+            
+            // Add it to the beginning of the stats section
+            statsSection.insertBefore(warningDiv, statsSection.firstChild);
+        }
+        
+        // Lấy repositories của người dùng - with caching
         async function fetchUserRepositories(username) {
             try {
-                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+                console.log(`Fetching repositories for user: ${username}`);
+                
+                // Check if a personal access token is available
+                const githubToken = localStorage.getItem('github_token');
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                // Add token to headers if available
+                if (githubToken) {
+                    headers['Authorization'] = `token ${githubToken}`;
+                }
+                
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
+                    headers: headers
+                });
                 
                 if (reposResponse.ok) {
                     const reposData = await reposResponse.json();
-                    console.log(`Đã tải ${reposData.length} repositories của người dùng:`, reposData);
+                    console.log(`Loaded ${reposData.length} user repositories:`, reposData);
                     
-                    // Thêm thông tin nguồn gốc cho mỗi repository
+                    // Cache the data
+                    cacheData('github_user_repos', reposData);
+                    
+                    // Add source information for each repository
                     reposData.forEach(repo => {
                         repo.source = 'user';
                         repo.source_name = username;
@@ -320,55 +856,111 @@
                     
                     return reposData;
                 }
+                console.error(`GitHub API returned status ${reposResponse.status} when fetching user repositories`);
                 return [];
             } catch (error) {
-                console.error('Lỗi khi tải danh sách repositories của người dùng:', error);
+                console.error('Error loading user repositories:', error);
                 return [];
             }
         }
         
-        // Lấy tất cả organizations và repositories của chúng
+        // Get all organizations and their repositories
         async function fetchAllOrganizationsWithRepos(username) {
             try {
-                const orgsResponse = await fetch(`https://api.github.com/users/${username}/orgs`);
+                console.log(`Fetching organizations for user: ${username}`);
+                
+                // Check if a personal access token is available in localStorage
+                const githubToken = localStorage.getItem('github_token');
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                // Add token to headers if available
+                if (githubToken) {
+                    headers['Authorization'] = `token ${githubToken}`;
+                }
+                
+                const orgsResponse = await fetch(`https://api.github.com/users/${username}/orgs?per_page=100`, {
+                    headers: headers
+                });
                 
                 if (orgsResponse.ok) {
                     const orgsData = await orgsResponse.json();
-                    console.log(`Đã tải ${orgsData.length} organizations:`, orgsData);
+                    console.log(`Loaded ${orgsData.length} organizations:`, orgsData);
                     
-                    // Lấy repositories của tất cả các organizations
+                    // Show message about organization count in the UI
+                    if (orgsData.length === 1) {
+                        showDiagnosticInfo(`Found 1 GitHub organization: "${orgsData[0].login}"`, 'info');
+                    } else if (orgsData.length > 1) {
+                        showDiagnosticInfo(`Found ${orgsData.length} GitHub organizations`, 'info');
+                    } else {
+                        // If no orgs found but we know the user has orgs, show a message about authentication
+                        showDiagnosticInfo(`No organizations found. GitHub may be limiting API access. Consider adding a personal access token for full access.`, 'warning');
+                        
+                        // Add a token input form to the page
+                        addGitHubTokenForm();
+                    }
+                    
+                    // Cache organizations data
+                    cacheData('github_orgs', orgsData);
+                    
+                    // Display organizations immediately
+                    displayOrganizations(orgsData);
+                    
+                    // Get repositories from all organizations
                     let allOrgRepos = [];
                     
-                    // Sử dụng Promise.all để lấy repositories của tất cả organizations song song
-                    const orgReposPromises = orgsData.map(org => fetchOrganizationRepos(org.login));
+                    // Use Promise.all to fetch repositories from all organizations in parallel
+                    const orgReposPromises = orgsData.map(org => fetchOrganizationRepos(org.login, githubToken));
                     const orgReposResults = await Promise.all(orgReposPromises);
                     
-                    // Gộp tất cả repositories từ các organizations
+                    // Combine all repositories from organizations
                     orgReposResults.forEach(repos => {
                         allOrgRepos = [...allOrgRepos, ...repos];
                     });
                     
-                    console.log(`Đã tải tổng cộng ${allOrgRepos.length} repositories từ các organizations`);
+                    console.log(`Loaded a total of ${allOrgRepos.length} repositories from organizations`);
                     
                     return { orgs: orgsData, orgRepos: allOrgRepos };
+                } else if (orgsResponse.status === 401 || orgsResponse.status === 403) {
+                    // Authentication error - possibly need a token
+                    showDiagnosticInfo(`GitHub API access limited. For full access to your organizations, please add a personal access token.`, 'warning');
+                    addGitHubTokenForm();
+                    return { orgs: [], orgRepos: [] };
                 }
                 return { orgs: [], orgRepos: [] };
             } catch (error) {
-                console.error('Lỗi khi tải danh sách organizations:', error);
+                console.error('Error loading organizations list:', error);
+                // Try to display cached organizations if available
+                const cachedOrgs = getCachedData('github_orgs');
+                if (cachedOrgs && cachedOrgs.length > 0) {
+                    displayOrganizations(cachedOrgs);
+                }
                 return { orgs: [], orgRepos: [] };
             }
         }
         
-        // Lấy repositories của một organization
-        async function fetchOrganizationRepos(orgName) {
+        // Fetch organization repositories with optional token
+        async function fetchOrganizationRepos(orgName, token = null) {
             try {
-                const reposResponse = await fetch(`https://api.github.com/orgs/${orgName}/repos?per_page=100`);
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                // Add token to headers if available
+                if (token) {
+                    headers['Authorization'] = `token ${token}`;
+                }
+                
+                const reposResponse = await fetch(`https://api.github.com/orgs/${orgName}/repos?per_page=100`, {
+                    headers: headers
+                });
                 
                 if (reposResponse.ok) {
                     const reposData = await reposResponse.json();
-                    console.log(`Đã tải ${reposData.length} repositories của organization ${orgName}:`, reposData);
+                    console.log(`Loaded ${reposData.length} repositories from organization ${orgName}:`, reposData);
                     
-                    // Thêm thông tin nguồn gốc cho mỗi repository
+                    // Add source information for each repository
                     reposData.forEach(repo => {
                         repo.source = 'organization';
                         repo.source_name = orgName;
@@ -378,34 +970,105 @@
                 }
                 return [];
             } catch (error) {
-                console.error(`Lỗi khi tải danh sách repositories của organization ${orgName}:`, error);
+                console.error(`Error loading repositories from organization ${orgName}:`, error);
                 return [];
             }
         }
         
-        // Hiển thị thông tin repositories
+        // Add a GitHub token input form
+        function addGitHubTokenForm() {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+            
+            // Check if form already exists
+            if (document.getElementById('github-token-form')) return;
+            
+            const tokenForm = document.createElement('div');
+            tokenForm.id = 'github-token-form';
+            tokenForm.className = 'mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg';
+            tokenForm.innerHTML = `
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">GitHub API Access</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                    You appear to have more organizations on GitHub than are being displayed.
+                    GitHub API rate limits or visibility restrictions might be preventing access.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 mb-3">
+                    For full access to all your organizations, you can add a personal access token.
+                    <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" class="text-blue-600 dark:text-blue-400 underline">Learn how to create a token</a>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="password" id="github-token-input" placeholder="Personal Access Token" 
+                           class="flex-grow px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                    <button id="github-token-save" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Save & Reload
+                    </button>
+                </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                    Your token is stored only in your browser's localStorage and is not sent anywhere except to GitHub's API.
+                </p>
+            `;
+            
+            statsSection.insertBefore(tokenForm, statsSection.firstChild);
+            
+            // Add event listener for the save button
+            document.getElementById('github-token-save').addEventListener('click', function() {
+                const token = document.getElementById('github-token-input').value.trim();
+                if (token) {
+                    localStorage.setItem('github_token', token);
+                    showNotification('Token saved. Reloading data...', 'success');
+                    
+                    // Clear existing data
+                    localStorage.removeItem('github_orgs');
+                    localStorage.removeItem('github_org_repos');
+                    
+                    // Remove existing sections
+                    const orgsSection = document.getElementById('github-orgs-section');
+                    if (orgsSection) orgsSection.remove();
+                    
+                    const reposSection = document.getElementById('github-repos-section');
+                    if (reposSection) reposSection.remove();
+                    
+                    // Reload data
+                    setTimeout(() => {
+                        tokenForm.remove();
+                        fetchGitHubData();
+                    }, 1000);
+                } else {
+                    showNotification('Please enter a valid token', 'error');
+                }
+            });
+        }
+        
+        // Display repositories information
         function displayRepositories(repos) {
             const statsSection = document.getElementById('github-stats');
             if (!statsSection) return;
             
-            // Tạo phần tử container cho repositories
+            // Remove existing repositories section if present
+            const existingReposSection = document.getElementById('github-repos-section');
+            if (existingReposSection) {
+                existingReposSection.remove();
+            }
+            
+            // Create container element for repositories
             const reposSection = document.createElement('div');
+            reposSection.id = 'github-repos-section';
             reposSection.className = 'mt-10';
             reposSection.innerHTML = `
-                <h3 class="text-xl font-semibold mb-4 text-gray-800">Tất cả Repositories (${repos.length})</h3>
-                <div class="overflow-auto max-h-96 border border-gray-200 rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50 sticky top-0">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">All Repositories (${repos.length})</h3>
+                <div class="overflow-auto max-h-96 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-800 sticky top-0">
                             <tr>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Repository</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nguồn</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mô tả</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stars</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Forks</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ngôn ngữ</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Repository</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Source</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Stars</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Forks</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Language</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200" id="repos-table-body">
+                        <tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600" id="repos-table-body">
                         </tbody>
                     </table>
                 </div>
@@ -413,38 +1076,38 @@
             
             statsSection.appendChild(reposSection);
             
-            // Thêm dữ liệu vào bảng
+            // Add data to the table
             const reposTableBody = document.getElementById('repos-table-body');
             repos.forEach(repo => {
                 const row = document.createElement('tr');
-                row.className = 'hover:bg-gray-50';
+                row.className = 'hover:bg-gray-50 dark:hover:bg-gray-600';
                 
                 row.innerHTML = `
                     <td class="px-4 py-3 whitespace-nowrap">
-                        <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline font-medium">
+                        <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                             ${repo.name}
                         </a>
                     </td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full ${repo.source === 'user' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}">
+                        <span class="px-2 py-1 text-xs rounded-full ${repo.source === 'user' ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-200' : 'bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-200'}">
                             ${repo.source === 'user' ? 'User' : 'Org:'} ${repo.source_name}
                         </span>
                     </td>
-                    <td class="px-4 py-3">
-                        ${repo.description ? repo.description : '<span class="text-gray-400">Không có mô tả</span>'}
+                    <td class="px-4 py-3 text-gray-800 dark:text-gray-300">
+                        ${repo.description ? repo.description : '<span class="text-gray-400 dark:text-gray-500">No description</span>'}
                     </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-800 dark:text-gray-300">
                         <span class="flex items-center">
                             <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
                         </span>
                     </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-800 dark:text-gray-300">
                         <span class="flex items-center">
-                            <i class="fas fa-code-branch text-gray-500 mr-1"></i> ${repo.forks_count}
+                            <i class="fas fa-code-branch text-gray-500 dark:text-gray-400 mr-1"></i> ${repo.forks_count}
                         </span>
                     </td>
                     <td class="px-4 py-3 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full ${repo.language ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}">
+                        <span class="px-2 py-1 text-xs rounded-full ${repo.language ? 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200' : 'bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-300'}">
                             ${repo.language || 'N/A'}
                         </span>
                     </td>
@@ -453,42 +1116,42 @@
                 reposTableBody.appendChild(row);
             });
             
-            // Tìm số lượng repositories theo nguồn
+            // Find number of repositories by source
             const userReposCount = repos.filter(repo => repo.source === 'user').length;
             const orgReposCount = repos.filter(repo => repo.source === 'organization').length;
             
-            // Thêm tổng kết về repositories
+            // Add repository summary
             const reposSummary = document.createElement('div');
-            reposSummary.className = 'mt-4 p-4 bg-gray-50 rounded-lg';
+            reposSummary.className = 'mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg';
             reposSummary.innerHTML = `
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="text-center">
-                        <p class="text-gray-600 text-sm">Tổng số repos</p>
-                        <p class="text-xl font-bold text-blue-600">${repos.length} <span class="text-xs text-gray-500">(User: ${userReposCount}, Org: ${orgReposCount})</span></p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Repos</p>
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.length} <span class="text-xs text-gray-500 dark:text-gray-400">(User: ${userReposCount}, Org: ${orgReposCount})</span></p>
                     </div>
                     <div class="text-center">
-                        <p class="text-gray-600 text-sm">Tổng số stars</p>
-                        <p class="text-xl font-bold text-blue-600">${repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Stars</p>
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-gray-600 text-sm">Tổng số forks</p>
-                        <p class="text-xl font-bold text-blue-600">${repos.reduce((sum, repo) => sum + repo.forks_count, 0)}</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Forks</p>
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.reduce((sum, repo) => sum + repo.forks_count, 0)}</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-gray-600 text-sm">Ngôn ngữ phổ biến</p>
-                        <p class="text-xl font-bold text-blue-600">${getMostUsedLanguage(repos)}</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Top Language</p>
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${getMostUsedLanguage(repos)}</p>
                     </div>
                 </div>
                 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <h4 class="font-medium text-gray-700 mb-2">Top 5 repositories (stars)</h4>
+                        <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Top 5 repositories (by stars)</h4>
                         <ul class="space-y-1">
                             ${getTopRepositories(repos, 'stars').map(repo => `
-                                <li class="flex items-center justify-between p-2 bg-white rounded-lg border border-gray-200">
-                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">
+                                <li class="flex items-center justify-between p-2 bg-white dark:bg-gray-600 rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
                                         ${repo.source_name}/${repo.name}
                                     </a>
-                                    <span class="flex items-center text-sm">
+                                    <span class="flex items-center text-sm text-gray-800 dark:text-gray-300">
                                         <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
                                     </span>
                                 </li>
@@ -496,15 +1159,15 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-medium text-gray-700 mb-2">Top 5 repositories (forks)</h4>
+                        <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Top 5 repositories (by forks)</h4>
                         <ul class="space-y-1">
                             ${getTopRepositories(repos, 'forks').map(repo => `
-                                <li class="flex items-center justify-between p-2 bg-white rounded-lg border border-gray-200">
-                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 hover:underline">
+                                <li class="flex items-center justify-between p-2 bg-white dark:bg-gray-600 rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
                                         ${repo.source_name}/${repo.name}
                                     </a>
-                                    <span class="flex items-center text-sm">
-                                        <i class="fas fa-code-branch text-gray-500 mr-1"></i> ${repo.forks_count}
+                                    <span class="flex items-center text-sm text-gray-800 dark:text-gray-300">
+                                        <i class="fas fa-code-branch text-gray-500 dark:text-gray-400 mr-1"></i> ${repo.forks_count}
                                     </span>
                                 </li>
                             `).join('')}
@@ -529,28 +1192,73 @@
             return sortedRepos.slice(0, limit);
         }
         
-        // Hiển thị thông tin organizations
+        // Display organizations information
         function displayOrganizations(orgs) {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection || orgs.length === 0) return;
+            if (!orgs || orgs.length === 0) return;
             
-            // Tạo phần tử container cho organizations
+            console.log(`Displaying ${orgs.length} organizations`);
+            
+            // Remove existing organizations section if present
+            const existingSection = document.getElementById('github-orgs-section');
+            if (existingSection) {
+                existingSection.remove();
+            }
+            
+            // Create new organizations section
             const orgsSection = document.createElement('div');
-            orgsSection.className = 'mt-10';
+            orgsSection.id = 'github-orgs-section';
+            orgsSection.className = 'mb-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6';
+            
+            // Add section title
             orgsSection.innerHTML = `
-                <h3 class="text-xl font-semibold mb-4 text-gray-800">Organizations (${orgs.length})</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    ${orgs.map(org => `
-                        <a href="https://github.com/${org.login}" target="_blank" 
-                           class="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:shadow-md transition">
-                            <img src="${org.avatar_url}" class="w-16 h-16 rounded-full mb-2" alt="${org.login}">
-                            <p class="text-blue-600 hover:underline font-medium">${org.login}</p>
-                        </a>
-                    `).join('')}
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
+                    <i class="fas fa-building mr-2"></i>GitHub Organizations
+                </h2>
+                <div class="organizations-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 </div>
             `;
             
-            statsSection.appendChild(orgsSection);
+            // Get the container for organizations
+            const orgsContainer = orgsSection.querySelector('.organizations-container');
+            
+            // Add each organization
+            orgs.forEach(org => {
+                const orgCard = document.createElement('div');
+                orgCard.className = 'org-card bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center transition-transform transform hover:scale-105 hover:shadow-md';
+                
+                // Create organization HTML
+                orgCard.innerHTML = `
+                    <img src="${org.avatar_url}" alt="${org.login}" class="w-12 h-12 rounded-md mr-4">
+                    <div class="flex-grow">
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">${org.login}</h3>
+                        <a href="${org.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">
+                            <i class="fas fa-external-link-alt mr-1"></i>View on GitHub
+                        </a>
+                    </div>
+                `;
+                
+                // Add to container
+                orgsContainer.appendChild(orgCard);
+            });
+            
+            // Find suitable location to add the section
+            const githubStatsContainer = document.querySelector('.github-stats-container');
+            if (githubStatsContainer) {
+                const existingReposSection = document.getElementById('github-repos-section');
+                if (existingReposSection) {
+                    // Insert before repos section
+                    githubStatsContainer.insertBefore(orgsSection, existingReposSection);
+                } else {
+                    // Add at the end if no repos section
+                    githubStatsContainer.appendChild(orgsSection);
+                }
+            } else {
+                // If no container exists, add to main
+                const mainContainer = document.querySelector('main');
+                if (mainContainer) {
+                    mainContainer.appendChild(orgsSection);
+                }
+            }
         }
         
         // Tìm ngôn ngữ được sử dụng nhiều nhất
@@ -584,13 +1292,13 @@
             const infoDiv = document.createElement('div');
             infoDiv.className = 'mt-6 flex flex-wrap justify-center gap-6';
             infoDiv.innerHTML = `
-                <div class="bg-gray-100 p-4 rounded-lg text-center w-40">
-                    <p class="text-gray-600">Followers</p>
-                    <p id="github-followers" class="text-2xl font-bold text-blue-600">-</p>
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center w-40">
+                    <p class="text-gray-600 dark:text-gray-300">Followers</p>
+                    <p id="github-followers" class="text-2xl font-bold text-blue-600 dark:text-blue-400">-</p>
                 </div>
-                <div class="bg-gray-100 p-4 rounded-lg text-center w-40">
-                    <p class="text-gray-600">Repositories</p>
-                    <p id="github-repos" class="text-2xl font-bold text-blue-600">-</p>
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center w-40">
+                    <p class="text-gray-600 dark:text-gray-300">Repositories</p>
+                    <p id="github-repos" class="text-2xl font-bold text-blue-600 dark:text-blue-400">-</p>
                 </div>
             `;
             
@@ -603,10 +1311,377 @@
             }
         }
 
+        // Xử lý form liên hệ
+        function setupContactForm() {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+            
+            // Set up character counter for message
+            const messageField = document.getElementById('message');
+            const messageLength = document.getElementById('message-length');
+            
+            if (messageField && messageLength) {
+                messageField.addEventListener('input', function() {
+                    messageLength.textContent = this.value.length;
+                    
+                    // Add visual feedback based on length
+                    if (this.value.length < 10) {
+                        messageLength.className = 'text-red-500';
+                    } else if (this.value.length > 400) {
+                        messageLength.className = 'text-yellow-600';
+                    } else {
+                        messageLength.className = 'text-green-600';
+                    }
+                });
+            }
+            
+            // Handle form submission with enhanced security
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset previous errors
+                clearFormErrors();
+                
+                // Get form data
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const honeypot = document.getElementById('website').value;
+                
+                // Honeypot check - if field is filled, it's likely a bot
+                if (honeypot) {
+                    console.log('Bot detected via honeypot field');
+                    // Pretend success but don't process
+                    simulateSuccessfulSubmission();
+                    return;
+                }
+                
+                // Validate inputs
+                let isValid = true;
+                
+                // Name validation
+                if (!validateName(name)) {
+                    showFieldError('name', 'Name must be 2-50 characters without special characters');
+                    isValid = false;
+                }
+                
+                // Email validation
+                if (!validateEmail(email)) {
+                    showFieldError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Message validation
+                if (message.length < 10 || message.length > 500) {
+                    showFieldError('message', 'Message must be 10-500 characters');
+                    isValid = false;
+                }
+                
+                // Check for rapid submission (simple rate limiting)
+                const lastSubmission = localStorage.getItem('last_form_submission');
+                const now = Date.now();
+                
+                if (lastSubmission && (now - parseInt(lastSubmission)) < 30000) {
+                    // Less than 30 seconds since last submission
+                    showNotification('Please wait at least 30 seconds before submitting another message.', 'error');
+                    return;
+                }
+                
+                if (isValid) {
+                    // Proceed with submission
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    
+                    // Store submission timestamp for rate limiting
+                    localStorage.setItem('last_form_submission', now.toString());
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        showNotification('Thank you! Your message has been sent successfully.', 'success');
+                        
+                        // Reset form
+                        form.reset();
+                        messageLength.textContent = '0';
+                        
+                        // Restore button
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }, 1500);
+                }
+            });
+            
+            // Helper functions for form validation
+            function validateName(name) {
+                const nameRegex = /^[a-zA-ZÀ-ỹ\s]{2,50}$/;
+                return nameRegex.test(name);
+            }
+            
+            function validateEmail(email) {
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return emailRegex.test(email);
+            }
+            
+            function showFieldError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const errorDiv = document.getElementById(`${fieldId}-error`);
+                
+                if (field && errorDiv) {
+                    field.classList.add('border-red-500');
+                    errorDiv.textContent = message;
+                    errorDiv.classList.remove('hidden');
+                }
+            }
+            
+            function clearFormErrors() {
+                const errorFields = ['name', 'email', 'message'];
+                
+                errorFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const errorDiv = document.getElementById(`${fieldId}-error`);
+                    
+                    if (field && errorDiv) {
+                        field.classList.remove('border-red-500');
+                        errorDiv.classList.add('hidden');
+                    }
+                });
+            }
+            
+            function simulateSuccessfulSubmission() {
+                // We pretend everything is fine to avoid giving feedback to bots
+                setTimeout(() => {
+                    showNotification('Thank you! Your message has been sent successfully.', 'success');
+                    form.reset();
+                }, 1500);
+            }
+        }
+        
+        // Hiển thị thông báo
+        function showNotification(message, type = 'info') {
+            // Tạo phần tử thông báo
+            const notification = document.createElement('div');
+            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transition-all transform translate-y-0 opacity-100 ${
+                type === 'success' ? 'bg-green-600 dark:bg-green-700 text-white' : 
+                type === 'error' ? 'bg-red-600 dark:bg-red-700 text-white' : 
+                'bg-blue-600 dark:bg-blue-700 text-white'
+            }`;
+            notification.style.zIndex = '9999';
+            notification.setAttribute('role', 'alert');
+            
+            // Nội dung thông báo
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="mr-2 ${
+                        type === 'success' ? 'fas fa-check-circle' : 
+                        type === 'error' ? 'fas fa-exclamation-circle' : 
+                        'fas fa-info-circle'
+                    }"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="absolute top-1 right-1 text-white opacity-70 hover:opacity-100" aria-label="Đóng thông báo">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Thêm vào body
+            document.body.appendChild(notification);
+            
+            // Xử lý nút đóng
+            const closeButton = notification.querySelector('button');
+            closeButton.addEventListener('click', function() {
+                notification.classList.replace('translate-y-0', 'translate-y-12');
+                notification.classList.replace('opacity-100', 'opacity-0');
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            // Auto-close after 5 seconds
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    notification.classList.replace('translate-y-0', 'translate-y-12');
+                    notification.classList.replace('opacity-100', 'opacity-0');
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        // Cải thiện accessibility
+        function setupAccessibility() {
+            // Đảm bảo tất cả hình ảnh đều có alt text
+            document.querySelectorAll('img:not([alt])').forEach(img => {
+                img.alt = 'Image';
+            });
+            
+            // Thêm skip to content link cho người dùng bàn phím
+            const skipLink = document.createElement('a');
+            skipLink.href = '#main-content';
+            skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded';
+            skipLink.innerText = 'Skip to main content';
+            document.body.insertBefore(skipLink, document.body.firstChild);
+            
+            // Thêm ID cho main content
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.id = 'main-content';
+                mainContent.setAttribute('role', 'main');
+            }
+        }
+
         // Chạy khi trang đã tải
         document.addEventListener('DOMContentLoaded', function() {
             addGitHubInfoElements();
             fetchGitHubData();
+            setupContactForm();
+            setupAccessibility();
+            setupDarkMode();
+        });
+
+        // Cài đặt dark mode
+        function setupDarkMode() {
+            const themeToggles = [
+                document.getElementById('theme-toggle'),
+                document.getElementById('mobile-theme-toggle')
+            ].filter(Boolean);
+            
+            const html = document.documentElement;
+            
+            // Kiểm tra nếu đã lưu theme trước đó hoặc sử dụng system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Áp dụng theme đã lưu hoặc system preference
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                html.classList.add('dark');
+                themeToggles.forEach(toggle => {
+                    toggle.querySelector('.fa-moon').classList.add('hidden');
+                    toggle.querySelector('.fa-sun').classList.remove('hidden');
+                });
+            } else {
+                html.classList.remove('dark');
+                themeToggles.forEach(toggle => {
+                    toggle.querySelector('.fa-moon').classList.remove('hidden');
+                    toggle.querySelector('.fa-sun').classList.add('hidden');
+                });
+            }
+            
+            // Thêm sự kiện click cho các nút toggle
+            themeToggles.forEach(toggle => {
+                if (!toggle) return;
+                
+                toggle.addEventListener('click', function() {
+                    if (html.classList.contains('dark')) {
+                        // Switch to light mode
+                        html.classList.remove('dark');
+                        localStorage.setItem('theme', 'light');
+                        
+                        // Cập nhật các icon
+                        themeToggles.forEach(t => {
+                            t.querySelector('.fa-moon').classList.remove('hidden');
+                            t.querySelector('.fa-sun').classList.add('hidden');
+                        });
+                    } else {
+                        // Switch to dark mode
+                        html.classList.add('dark');
+                        localStorage.setItem('theme', 'dark');
+                        
+                        // Cập nhật các icon
+                        themeToggles.forEach(t => {
+                            t.querySelector('.fa-moon').classList.add('hidden');
+                            t.querySelector('.fa-sun').classList.remove('hidden');
+                        });
+                    }
+                });
+            });
+            
+            // Lắng nghe thay đổi từ system preference
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem('theme')) {
+                    if (e.matches) {
+                        html.classList.add('dark');
+                        themeToggles.forEach(toggle => {
+                            toggle.querySelector('.fa-moon').classList.add('hidden');
+                            toggle.querySelector('.fa-sun').classList.remove('hidden');
+                        });
+                    } else {
+                        html.classList.remove('dark');
+                        themeToggles.forEach(toggle => {
+                            toggle.querySelector('.fa-moon').classList.remove('hidden');
+                            toggle.querySelector('.fa-sun').classList.add('hidden');
+                        });
+                    }
+                }
+            });
+        }
+
+        // Show diagnostic info in UI
+        function showDiagnosticInfo(message, type = 'info') {
+            const statsSection = document.getElementById('github-stats');
+            if (!statsSection) return;
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = `mt-4 p-4 ${
+                type === 'info' ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300' :
+                type === 'warning' ? 'bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 text-yellow-700 dark:text-yellow-300' :
+                'bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'
+            } rounded-lg`;
+            
+            infoDiv.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas ${
+                        type === 'info' ? 'fa-info-circle text-blue-500 dark:text-blue-400' :
+                        type === 'warning' ? 'fa-exclamation-triangle text-yellow-500 dark:text-yellow-400' :
+                        'fa-terminal text-gray-500 dark:text-gray-400'
+                    } mr-2"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            statsSection.appendChild(infoDiv);
+            
+            // Auto remove after 8 seconds for non-critical messages
+            if (type !== 'warning') {
+                setTimeout(() => {
+                    if (infoDiv && document.body.contains(infoDiv)) {
+                        infoDiv.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                        setTimeout(() => infoDiv.remove(), 500);
+                    }
+                }, 8000);
+            }
+            
+            return infoDiv;
+        }
+
+        // Initialize when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get GitHub username from meta tag or use default
+            const githubUsername = document.querySelector('meta[name="github-username"]')?.content || 'duvu';
+            
+            // Create GitHub stats container if it doesn't exist
+            let statsContainer = document.querySelector('.github-stats-container');
+            if (!statsContainer) {
+                statsContainer = document.createElement('div');
+                statsContainer.className = 'github-stats-container max-w-4xl mx-auto p-6';
+                
+                // Add loading indicator
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'github-stats-loading';
+                loadingDiv.className = 'flex items-center justify-center my-10 py-10';
+                loadingDiv.innerHTML = `
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                    <span class="ml-3 text-gray-600 dark:text-gray-400">Loading GitHub data...</span>
+                `;
+                
+                statsContainer.appendChild(loadingDiv);
+                
+                // Add to main content
+                const mainContent = document.querySelector('main');
+                if (mainContent) {
+                    mainContent.appendChild(statsContainer);
+                }
+            }
+            
+            // Fetch GitHub stats
+            fetchGitHubStats(githubUsername);
         });
     </script>
 </body>

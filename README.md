@@ -1,51 +1,89 @@
-# Trang cá nhân của Du Vu
+# Personal Portfolio Website
 
-Đây là mã nguồn cho trang web cá nhân của tôi, được lưu trữ trên GitHub Pages.
+A modern, responsive personal portfolio website built with HTML, Tailwind CSS, and JavaScript. The site showcases personal information, skills, GitHub statistics, projects, and includes a contact form.
 
-## Tính năng
+## Features
 
-- Trang chủ với giới thiệu
-- Danh sách kỹ năng với thanh tiến trình
-- Hiển thị các dự án với hình ảnh và liên kết
-- Mẫu liên hệ
-- Thiết kế responsive (hiển thị tốt trên máy tính và điện thoại)
+- **Modern Design**: Clean and professional layout with Tailwind CSS
+- **Responsive**: Fully responsive design that works on all devices
+- **Dark Mode**: Toggle between light and dark themes with persistent preferences
+- **GitHub Integration**: Dynamic GitHub stats with caching for performance
+- **Performance Optimized**: Lazy loading, resource hints, and image optimization
+- **Accessibility**: ARIA attributes, keyboard navigation, and screen reader support
+- **SEO Friendly**: Meta tags, Open Graph, and Twitter card support
+- **Security**: Form validation, honeypot fields, and sanitization
 
-## Xem trước và Debug
+## Setup and Installation
 
-Để xem trước trang web trước khi commit:
-
-1. **Mở trực tiếp file HTML**:
-   - Mở file `index.html` bằng trình duyệt web
-
-2. **Sử dụng máy chủ web cục bộ**:
+1. **Clone the repository**
    ```bash
-   # Với Python
-   python -m http.server
-   
-   # Với Node.js
-   npx serve
+   git clone https://github.com/duvu/duvu.github.io.git
+   cd duvu.github.io
    ```
 
-3. **Sử dụng công cụ Debug**:
-   - Mở Developer Tools trong trình duyệt (F12)
-   - Kiểm tra phần Console để tìm lỗi
-   - Sử dụng tab Elements để kiểm tra và chỉnh sửa HTML/CSS
-   - Kiểm tra tính responsive ở nhiều kích thước màn hình
+2. **Local Development**
+   - Open the `index.html` file in your browser to view the site locally
+   - For a development server with live reloading, you can use:
+     ```bash
+     npx serve
+     ```
+     or
+     ```bash
+     npx http-server
+     ```
 
-## Công nghệ sử dụng
+3. **Deploy to GitHub Pages**
+   - Push changes to your `main` branch
+   - GitHub Pages will automatically build and deploy your site
+   - Your site will be available at `https://<username>.github.io`
 
-- HTML5
-- Tailwind CSS (thông qua CDN)
-- Font Awesome cho các biểu tượng
-- JavaScript cơ bản
-- GitHub Pages
+## Customization
 
-## Cách sử dụng
+### Personal Information
+Edit these sections in the `index.html` file:
+- Header section: Update name, title, and social media links
+- About section: Change the personal description
+- Skills section: Update the skills and proficiency levels
+- Contact section: Update contact details
 
-1. Clone repository này
-2. Chỉnh sửa nội dung trong file HTML
-3. Đẩy các thay đổi lên GitHub để cập nhật trang web
+### GitHub Integration
+The website automatically fetches GitHub statistics using the GitHub API. Customize the GitHub integration by:
+1. Changing the GitHub username in the `fetchGitHubData()` function
+2. Modifying the display of repositories in the `displayRepositories()` function
+3. Adjusting caching settings in the codebase
 
-## Liên kết
+### Dark Mode
+The website includes a dark mode toggle that:
+1. Remembers user preferences using localStorage
+2. Respects system preferences by default
+3. Provides a smooth transition between themes
 
-Truy cập trang web tại: [https://duvu.github.io](https://duvu.github.io) 
+## JavaScript Functions
+
+The website includes the following core functionality:
+
+- `setupDarkMode()`: Handles theme switching and preference storage
+- `setupAccessibility()`: Adds accessibility features like skip links
+- `setupContactForm()`: Manages form validation and submission
+- `fetchGitHubData()`: Retrieves GitHub statistics with caching
+- `displayRepositories()`: Renders repository information
+- `showNotification()`: Displays user notifications
+
+## Browser Compatibility
+
+The website is compatible with:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Android Chrome)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Font Awesome](https://fontawesome.com/) for icons
+- [GitHub API](https://docs.github.com/en/rest) for GitHub statistics 
