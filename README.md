@@ -10,7 +10,7 @@ A single static page (`index.html`, plain HTML/CSS/JS, no build step) with light
 index.html                      # the page
 data/github-stats.json          # GitHub statistics rendered in the "GitHub activity" section
 scripts/update_github_stats.py  # regenerates data/github-stats.json
-imgs/                           # profile photo and project screenshots
+imgs/                           # optimized photo, screenshots, social preview card
 ```
 
 ## Preview locally
