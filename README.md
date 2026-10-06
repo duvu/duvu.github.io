@@ -1,89 +1,39 @@
-# Personal Portfolio Website
+# duvu.github.io
 
-A modern, responsive personal portfolio website built with HTML, Tailwind CSS, and JavaScript. The site showcases personal information, skills, GitHub statistics, projects, and includes a contact form.
+Personal profile page of Du Quang Vu — Senior Backend Software Engineer. Published at <https://duvu.github.io>.
 
-## Features
+A single static page (`index.html`, plain HTML/CSS/JS, no build step) with light/dark themes, responsive layout and print styles.
 
-- **Modern Design**: Clean and professional layout with Tailwind CSS
-- **Responsive**: Fully responsive design that works on all devices
-- **Dark Mode**: Toggle between light and dark themes with persistent preferences
-- **GitHub Integration**: Dynamic GitHub stats with caching for performance
-- **Performance Optimized**: Lazy loading, resource hints, and image optimization
-- **Accessibility**: ARIA attributes, keyboard navigation, and screen reader support
-- **SEO Friendly**: Meta tags, Open Graph, and Twitter card support
-- **Security**: Form validation, honeypot fields, and sanitization
+## Structure
 
-## Setup and Installation
+```
+index.html                      # the page
+data/github-stats.json          # GitHub statistics rendered in the "GitHub activity" section
+scripts/update_github_stats.py  # regenerates data/github-stats.json
+imgs/                           # profile photo and project screenshots
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/duvu/duvu.github.io.git
-   cd duvu.github.io
-   ```
+## Preview locally
 
-2. **Local Development**
-   - Open the `index.html` file in your browser to view the site locally
-   - For a development server with live reloading, you can use:
-     ```bash
-     npx serve
-     ```
-     or
-     ```bash
-     npx http-server
-     ```
+The page loads `data/github-stats.json` with `fetch`, so serve it over HTTP instead of opening the file directly:
 
-3. **Deploy to GitHub Pages**
-   - Push changes to your `main` branch
-   - GitHub Pages will automatically build and deploy your site
-   - Your site will be available at `https://<username>.github.io`
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000
+```
 
-## Customization
+## Refresh GitHub statistics
 
-### Personal Information
-Edit these sections in the `index.html` file:
-- Header section: Update name, title, and social media links
-- About section: Change the personal description
-- Skills section: Update the skills and proficiency levels
-- Contact section: Update contact details
+The stats are a snapshot so the page never hits GitHub API rate limits. To refresh them:
 
-### GitHub Integration
-The website automatically fetches GitHub statistics using the GitHub API. Customize the GitHub integration by:
-1. Changing the GitHub username in the `fetchGitHubData()` function
-2. Modifying the display of repositories in the `displayRepositories()` function
-3. Adjusting caching settings in the codebase
+```bash
+gh auth login        # once, as the profile owner
+python3 scripts/update_github_stats.py
+git add data/github-stats.json && git commit -m "Update GitHub stats" && git push
+```
 
-### Dark Mode
-The website includes a dark mode toggle that:
-1. Remembers user preferences using localStorage
-2. Respects system preferences by default
-3. Provides a smooth transition between themes
+Contribution counts include private contributions (as aggregate numbers only) because the script runs with your own token.
 
-## JavaScript Functions
+## Deploy
 
-The website includes the following core functionality:
-
-- `setupDarkMode()`: Handles theme switching and preference storage
-- `setupAccessibility()`: Adds accessibility features like skip links
-- `setupContactForm()`: Manages form validation and submission
-- `fetchGitHubData()`: Retrieves GitHub statistics with caching
-- `displayRepositories()`: Renders repository information
-- `showNotification()`: Displays user notifications
-
-## Browser Compatibility
-
-The website is compatible with:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Android Chrome)
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Font Awesome](https://fontawesome.com/) for icons
-- [GitHub API](https://docs.github.com/en/rest) for GitHub statistics 
+Push to `main`; GitHub Pages serves the repository root.

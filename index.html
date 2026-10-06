@@ -1,2050 +1,865 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Du Vu - Senior Software Engineer & Solution Architect</title>
-    <meta name="description" content="Du Vu's personal portfolio showcasing development skills, projects, and GitHub contributions.">
-    
-    <!-- Sitemap reference for search engines -->
+    <title>Du Quang Vu — Senior Backend Software Engineer</title>
+    <meta name="description" content="Du Quang Vu — Senior Backend Software Engineer with 15+ years of experience in Java, Spring Boot, microservices, event-driven and financial systems.">
+    <link rel="canonical" href="https://duvu.github.io/">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://github-readme-stats.vercel.app">
-    <link rel="preconnect" href="https://api.github.com">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+
+    <meta property="og:type" content="profile">
     <meta property="og:url" content="https://duvu.github.io/">
-    <meta property="og:title" content="Du Vu - Senior Software Engineer & Solution Architect">
-    <meta property="og:description" content="Senior Software Engineer & Solution Architect specializing in FinTech, AI, and Cloud Solutions">
+    <meta property="og:title" content="Du Quang Vu — Senior Backend Software Engineer">
+    <meta property="og:description" content="Java · Spring Boot · Microservices · Distributed & Financial Systems. 15+ years building production backend systems.">
     <meta property="og:image" content="https://duvu.github.io/imgs/profile.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://duvu.github.io/">
-    <meta property="twitter:title" content="Du Vu - Senior Software Engineer & Solution Architect">
-    <meta property="twitter:description" content="Senior Software Engineer & Solution Architect specializing in FinTech, AI, and Cloud Solutions">
-    <meta property="twitter:image" content="https://duvu.github.io/imgs/profile.png">
-    
-    <!-- Schema.org markup for Google -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Du Quang Vu — Senior Backend Software Engineer">
+    <meta name="twitter:description" content="Java · Spring Boot · Microservices · Distributed & Financial Systems.">
+    <meta name="twitter:image" content="https://duvu.github.io/imgs/profile.png">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Du Vu",
+      "name": "Du Quang Vu",
       "url": "https://duvu.github.io/",
       "image": "https://duvu.github.io/imgs/profile.png",
+      "email": "mailto:hoaivubk@gmail.com",
+      "jobTitle": "Senior Backend Software Engineer",
+      "address": { "@type": "PostalAddress", "addressLocality": "Hanoi", "addressCountry": "VN" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Hanoi University of Science and Technology" },
+      "knowsAbout": ["Java", "Spring Boot", "Microservices", "Apache Kafka", "Distributed Systems", "Financial Systems"],
       "sameAs": [
         "https://github.com/duvu",
         "https://www.linkedin.com/in/hoaivubk/",
-        "https://www.facebook.com/dv4238"
-      ],
-      "jobTitle": "Senior Software Engineer & Solution Architect",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Self-employed"
-      }
+        "https://www.upwork.com/freelancers/~015f906bc9122ec62f"
+      ]
     }
     </script>
-    
-    <!-- Tailwind with dark mode support -->
+
     <script>
-    window.tailwindConfig = {
-        darkMode: 'class',
-        theme: {
-            extend: {}
-        }
-    };
+        // Apply saved theme before first paint to avoid a flash
+        try {
+            const t = localStorage.getItem('theme');
+            if (t) document.documentElement.dataset.theme = t;
+        } catch (e) {}
     </script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .transition-colors {
-                transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        :root {
+            --bg: #f7f8fa;
+            --surface: #ffffff;
+            --surface-2: #f1f3f6;
+            --border: #e3e6eb;
+            --text: #0f172a;
+            --text-2: #475569;
+            --text-3: #64748b;
+            --accent: #1d4ed8;
+            --on-accent: #ffffff;
+            --bar: #2563eb;
+            --bar-hover: #1e40af;
+            --grid: #e5e7eb;
+            --good: #15803d;
+            --good-soft: #e7f6ec;
+            --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 4px 16px rgba(15, 23, 42, .04);
+            color-scheme: light;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0b0f17;
+                --surface: #121826;
+                --surface-2: #182032;
+                --border: #232c3f;
+                --text: #e6e9ef;
+                --text-2: #a7b0c0;
+                --text-3: #8590a3;
+                --accent: #7aa2ff;
+                --on-accent: #0b0f17;
+                --bar: #5b8cff;
+                --bar-hover: #9cb8ff;
+                --grid: #232c3f;
+                --good: #4ade80;
+                --good-soft: #13291d;
+                --shadow: none;
+                color-scheme: dark;
             }
         }
+        :root[data-theme="dark"] {
+            --bg: #0b0f17;
+            --surface: #121826;
+            --surface-2: #182032;
+            --border: #232c3f;
+            --text: #e6e9ef;
+            --text-2: #a7b0c0;
+            --text-3: #8590a3;
+            --accent: #7aa2ff;
+            --on-accent: #0b0f17;
+            --bar: #5b8cff;
+            --bar-hover: #9cb8ff;
+            --grid: #232c3f;
+            --good: #4ade80;
+            --good-soft: #13291d;
+            --shadow: none;
+            color-scheme: dark;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 400 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3, h4 { line-height: 1.25; margin: 0; letter-spacing: -0.01em; }
+        p { margin: 0; }
+        ul, ol { margin: 0; padding: 0; }
+        img { max-width: 100%; display: block; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+        .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+        .skip-link { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 12px; z-index: 100; }
+        .skip-link:focus { left: 8px; }
+
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            background: color-mix(in srgb, var(--bg) 85%, transparent);
+            backdrop-filter: saturate(180%) blur(10px);
+            -webkit-backdrop-filter: saturate(180%) blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+        .brand { font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+        .brand:hover { text-decoration: none; }
+        .brand span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin-left: auto; }
+        .nav-links a { color: var(--text-2); font-size: 14px; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
+        .nav-links a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+        .icon-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--surface); color: var(--text-2); cursor: pointer;
+        }
+        .icon-btn:hover { color: var(--text); text-decoration: none; }
+        .nav-actions { display: flex; gap: 8px; align-items: center; }
+        .menu-btn { display: none; }
+        @media (max-width: 760px) {
+            .menu-btn { display: inline-flex; }
+            .nav-links {
+                display: none; position: absolute; top: 60px; left: 0; right: 0;
+                flex-direction: column; align-items: stretch; gap: 0;
+                background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px 12px;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { display: block; padding: 10px 4px; }
+        }
+
+        /* Hero */
+        .hero { padding: 64px 0 40px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+        .avatar { width: 168px; height: 168px; border-radius: 20px; object-fit: cover; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .status {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 500; color: var(--good);
+            background: var(--good-soft); padding: 4px 12px; border-radius: 999px; margin-bottom: 18px;
+        }
+        .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+        .hero h1 { font-size: clamp(34px, 5vw, 48px); font-weight: 700; letter-spacing: -0.03em; }
+        .hero .role { font-size: clamp(17px, 2.2vw, 20px); color: var(--text-2); margin-top: 8px; font-weight: 500; }
+        .hero .lead { color: var(--text-2); margin-top: 18px; max-width: 640px; }
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; color: var(--text-3); font-size: 14px; }
+        .hero-meta i { width: 16px; margin-right: 6px; }
+        .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px;
+            border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid var(--border);
+            background: var(--surface); color: var(--text);
+        }
+        .btn:hover { text-decoration: none; border-color: var(--text-3); }
+        .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+        .btn-primary:hover { border-color: var(--accent); filter: brightness(1.08); }
+        @media (max-width: 760px) {
+            .hero { padding-top: 40px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+            .avatar { order: -1; width: 112px; height: 112px; }
+        }
+
+        /* Key numbers */
+        .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 40px; }
+        .fact { background: var(--surface); padding: 18px 20px; }
+        .fact b { display: block; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+        .fact span { color: var(--text-3); font-size: 13px; }
+        @media (max-width: 760px) { .facts { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Sections */
+        section.block { padding: 48px 0; border-top: 1px solid var(--border); }
+        .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+        .eyebrow { font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+        .section-head h2 { font-size: 26px; font-weight: 700; }
+        .muted { color: var(--text-3); font-size: 14px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
+
+        /* About */
+        .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; align-items: start; }
+        .about-grid p + p { margin-top: 14px; }
+        .about-grid p { color: var(--text-2); }
+        .about-grid strong { color: var(--text); font-weight: 600; }
+        .focus-list { list-style: none; padding: 12px 20px; }
+        .focus-list li { display: flex; gap: 12px; padding: 10px 0; font-size: 15px; }
+        .focus-list li + li { border-top: 1px solid var(--border); }
+        .focus-list i { color: var(--accent); width: 18px; margin-top: 4px; flex: none; }
+        @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+
+        /* Experience */
+        .timeline { list-style: none; }
+        .job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 24px 0; }
+        .job + .job { border-top: 1px solid var(--border); }
+        .job:first-child { padding-top: 0; }
+        .job-when { color: var(--text-3); font-size: 14px; }
+        .job-when b { display: block; color: var(--text-2); font-weight: 500; }
+        .job h3 { font-size: 18px; font-weight: 600; }
+        .job .company { color: var(--accent); font-weight: 500; margin-top: 2px; }
+        .job ul { margin-top: 12px; padding-left: 18px; color: var(--text-2); }
+        .job li { margin: 4px 0; }
+        .job li::marker { color: var(--text-3); }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+        .tag {
+            font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace; color: var(--text-2);
+            background: var(--surface-2); border: 1px solid var(--border); padding: 6px 8px; border-radius: 6px;
+        }
+        @media (max-width: 760px) { .job { grid-template-columns: 1fr; gap: 8px; } }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 16px; }
+        .skill-card { padding: 20px; }
+        .skill-card h3 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .skill-card h3 i { color: var(--accent); width: 18px; }
+
+        /* Projects */
+        .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .project { padding: 24px; display: flex; flex-direction: column; }
+        .project.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .project h3 { font-size: 18px; font-weight: 600; }
+        .project .sub { color: var(--text-3); font-size: 14px; margin-top: 2px; }
+        .project p { color: var(--text-2); margin-top: 12px; }
+        .project ul { margin-top: 12px; padding-left: 18px; color: var(--text-2); font-size: 15px; }
+        .project .links { padding-top: 16px; display: flex; gap: 16px; font-size: 14px; font-weight: 500; }
+        .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+        .shots img { border-radius: 8px; border: 1px solid var(--border); width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+        .shots img:first-child { grid-column: 1 / -1; }
+        @media (max-width: 760px) {
+            .projects { grid-template-columns: 1fr; }
+            .project.featured { grid-template-columns: 1fr; }
+        }
+
+        /* GitHub */
+        .gh-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .gh-tile { padding: 18px 20px; }
+        .gh-tile .label { color: var(--text-3); font-size: 13px; }
+        .gh-tile .value { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+        .gh-tile .note { color: var(--text-3); font-size: 12px; margin-top: 2px; }
+        .gh-charts { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; margin-top: 16px; }
+        .chart-card { padding: 20px; }
+        .chart-card h3 { font-size: 15px; font-weight: 600; }
+        .chart-card .muted { font-size: 13px; margin-top: 2px; }
+        .chart { margin-top: 20px; position: relative; }
+        .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+        .chart text { fill: var(--text-3); font: 500 11px Inter, sans-serif; }
+        .chart .val { fill: var(--text-2); font-weight: 600; }
+        .chart .bar { fill: var(--bar); transition: fill .15s; pointer-events: none; }
+        .chart .bar.active { fill: var(--bar-hover); }
+        .chart .hit { fill: transparent; cursor: default; outline: none; }
+        .chart .baseline { stroke: var(--grid); stroke-width: 1; }
+        .tooltip {
+            position: absolute; pointer-events: none; z-index: 5;
+            background: var(--text); color: var(--bg); font-size: 12px; font-weight: 500;
+            padding: 6px 10px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 6px));
+            opacity: 0; transition: opacity .1s;
+        }
+        .tooltip.show { opacity: 1; }
+        .chart-table { margin-top: 12px; font-size: 13px; }
+        .chart-table summary { cursor: pointer; color: var(--text-3); }
+        .chart-table table { border-collapse: collapse; margin-top: 8px; width: 100%; }
+        .chart-table td, .chart-table th { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+        .gh-foot { margin-top: 14px; font-size: 13px; color: var(--text-3); }
+        @media (max-width: 860px) {
+            .gh-tiles { grid-template-columns: repeat(2, 1fr); }
+            .gh-charts { grid-template-columns: 1fr; }
+        }
+
+        /* Education / languages */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .info-card { padding: 22px; }
+        .info-card h3 { font-size: 15px; font-weight: 600; display: flex; gap: 10px; align-items: center; }
+        .info-card h3 i { color: var(--accent); }
+        .info-card .row { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; color: var(--text-2); }
+        .info-card .row b { color: var(--text); font-weight: 600; }
+        .info-card .row span:last-child { color: var(--text-3); text-align: right; }
+        @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+        /* Contact */
+        .contact { padding: 32px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; }
+        .contact h2 { font-size: 26px; font-weight: 700; }
+        .contact p { color: var(--text-2); margin-top: 10px; }
+        .engagement { list-style: none; display: grid; gap: 10px; font-size: 15px; }
+        .engagement li { display: flex; gap: 12px; }
+        .engagement span:first-child { color: var(--text-3); min-width: 110px; flex: none; }
+        @media (max-width: 760px) {
+            .contact { grid-template-columns: 1fr; padding: 24px; }
+            .engagement li { flex-direction: column; gap: 0; }
+        }
+
+        footer { padding: 32px 0 48px; color: var(--text-3); font-size: 14px; }
+        footer .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .socials { display: flex; gap: 8px; }
+        .socials svg { width: 16px; height: 16px; fill: currentColor; }
+
+        @media print {
+            .nav, .cta, .chart-table, footer .socials { display: none !important; }
+            body { background: #fff; }
+            .card { box-shadow: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans transition-colors">
-    <!-- Navigation -->
-    <nav class="bg-gray-800 dark:bg-gray-950 text-white sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold bg-blue-500 dark:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center">DV</div>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="#home" class="hover:text-blue-400 transition">Home</a></li>
-                <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
-                <li><a href="#skills" class="hover:text-blue-400 transition">Skills</a></li>
-                <li><a href="#projects" class="hover:text-blue-400 transition">Projects</a></li>
-                <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
-                <li>
-                    <button id="theme-toggle" aria-label="Toggle dark mode" class="p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
-                        <i class="fas fa-moon dark:hidden"></i>
-                        <i class="fas fa-sun hidden dark:inline"></i>
-                    </button>
-                </li>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <nav class="nav" aria-label="Primary">
+        <div class="container">
+            <a href="#top" class="brand">Du Quang Vu<span>.</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#github">GitHub</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="md:hidden flex items-center space-x-4">
-                <button id="mobile-theme-toggle" aria-label="Toggle dark mode" class="p-1 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600">
-                    <i class="fas fa-moon dark:hidden text-white"></i>
-                    <i class="fas fa-sun hidden dark:inline text-white"></i>
-                </button>
-                <div class="cursor-pointer menu-toggle">
-                    <i class="fas fa-bars text-xl"></i>
-                </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+                <button id="menu-btn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><i class="fas fa-bars" aria-hidden="true"></i></button>
             </div>
-        </div>
-        <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden bg-gray-700 dark:bg-gray-800 px-4 py-2">
-            <a href="#home" class="block py-2 hover:text-blue-400">Home</a>
-            <a href="#about" class="block py-2 hover:text-blue-400">About</a>
-            <a href="#skills" class="block py-2 hover:text-blue-400">Skills</a>
-            <a href="#projects" class="block py-2 hover:text-blue-400">Projects</a>
-            <a href="#contact" class="block py-2 hover:text-blue-400">Contact</a>
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header id="home" class="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white py-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                <div class="w-40 h-40 md:w-48 md:h-48 overflow-hidden rounded-full border-4 border-white dark:border-gray-700 shadow-xl transition-transform hover:scale-105">
-                    <img src="imgs/profile.png" alt="Du Vu" class="w-full h-full object-cover" loading="eager">
-                </div>
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-2">Du Vu</h1>
-                    <p class="text-xl text-blue-100 mb-4">Senior Software Engineer | Solution Architect | AI & FinTech</p>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="https://github.com/duvu" target="_blank" rel="noopener" aria-label="GitHub Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                            <i class="fab fa-github text-xl"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                        <a href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" target="_blank" rel="noopener" aria-label="Upwork Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512" class="w-5 h-5 fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/dv4238" target="_blank" rel="noopener" aria-label="Facebook Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-4 py-10" id="main-content" role="main">
-        <!-- About Section -->
-        <section id="about" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                <i class="fas fa-user mr-2 text-blue-600 dark:text-blue-400"></i> About Me
-            </h2>
-            <div class="text-gray-700 dark:text-gray-300">
-                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">🚀 Senior Software Engineer | Solution Architect | AI & FinTech Enthusiast</h3>
-                
-                <p class="mb-4">I am a Senior Software Engineer & Solution Architect with 20+ years of experience in software development, system architecture, and technical consulting. Over the years, I have worked with companies across FinTech, AI, and data analytics, helping them build scalable, efficient, and high-performance systems.</p>
-                
-                <h4 class="font-medium text-lg mb-2 text-gray-800 dark:text-gray-200">🔹 What I Offer:</h4>
-                <ul class="list-disc pl-6 mb-4 space-y-1">
-                    <li>Custom Software Development – Building robust applications with Java, Python, Node.js.</li>
-                    <li>Cloud & DevOps Solutions – Expertise in AWS, Docker, Kubernetes, CI/CD pipelines.</li>
-                    <li>Microservices & Scalable Systems – Designing high-performance backend solutions.</li>
-                    <li>AI & Data Analytics – Integrating machine learning (Langchain, AI Agents, NLP, PhoBERT) into real-world applications.</li>
-                    <li>Financial & Trading Systems – Experience with real-time stock trading platforms, risk management, and backtesting.</li>
-                    <li>Consulting & Tech Leadership – Helping teams adopt best practices in software engineering & agile development.</li>
-                </ul>
-                
-                <h4 class="font-medium text-lg mb-2 text-gray-800 dark:text-gray-200">🔹 My Achievements:</h4>
-                <ul class="list-disc pl-6 mb-4 space-y-1">
-                    <li>Optimized financial trading systems – Reduced order execution time from 500ms to 100ms, improving efficiency by 5x.</li>
-                    <li>Developed an AI-powered financial news analysis system (X51 Simple Trade).</li>
-                    <li>Led a remote team of 4 engineers to build a taxi dispatching system in New York, scaling it from 100 to 1000+ drivers.</li>
-                    <li>Designed risk management software for banks, ensuring compliance with Basel II standards.</li>
-                </ul>
-                
-                <p class="mt-4">I am open to freelance, consulting, and remote opportunities where I can help businesses solve complex technical challenges, optimize system performance, and drive innovation.</p>
-                
-                <p class="mt-4">📩 Let's connect and discuss how I can help with your next project!</p>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center">
-                <i class="fas fa-code mr-2 text-blue-600 dark:text-blue-400"></i> Technical Skills
-            </h2>
-            <div class="space-y-4">
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">Java/Spring Boot</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">95%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">Python/Machine Learning</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">90%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">Cloud Architecture (AWS/GCP)</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">85%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">Microservices/Distributed Systems</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">90%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">AI/NLP/LangChain</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">80%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="font-medium text-gray-700 dark:text-gray-300">DevOps/CI-CD</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">85%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GitHub Stats Section -->
-        <section id="github-stats" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-                <i class="fab fa-github mr-2 text-blue-600 dark:text-blue-400"></i> GitHub Stats
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="flex flex-col items-center">
-                    <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
-                         src="https://github-readme-stats.vercel.app/api?username=duvu&show_icons=true&theme=tokyonight" 
-                         alt="GitHub Stats"
-                         loading="lazy">
-                    <p class="text-gray-600 dark:text-gray-400 text-sm text-center">My GitHub Statistics</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img class="w-full max-w-md rounded-lg shadow-md mb-4" 
-                         src="https://github-readme-stats.vercel.app/api/top-langs/?username=duvu&layout=compact&theme=tokyonight" 
-                         alt="Top Languages"
-                         loading="lazy">
-                    <p class="text-gray-600 dark:text-gray-400 text-sm text-center">Most Used Languages</p>
-                </div>
-            </div>
-            <div class="mt-8 flex justify-center">
-                <img class="w-full max-w-2xl rounded-lg shadow-md" 
-                     src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=duvu&theme=tokyonight" 
-                     alt="GitHub Contribution Graph"
-                     loading="lazy">
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-                <i class="fas fa-project-diagram mr-2 text-blue-600 dark:text-blue-400"></i> Key Projects
-            </h2>
-            <div class="grid grid-cols-1 gap-10">
-                <!-- GPSHANDLE Project -->
-                <div class="rounded-lg overflow-hidden shadow-lg transition-transform hover:shadow-xl">
-                    <h3 class="text-xl font-semibold p-4 text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-750 border-b border-gray-200 dark:border-gray-700">GPSHANDLE - GPS Tracking &amp; Fleet Management System</h3>
-                    <div class="p-4 bg-white dark:bg-gray-700">
-                        <div class="flex flex-col lg:flex-row gap-6 mb-4">
-                            <div class="lg:w-1/2">
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                    GPSHANDLE is a comprehensive GPS tracking and fleet management system designed for businesses to monitor and optimize their vehicle operations. The platform provides real-time tracking, geofencing, alerts, and extensive reporting capabilities.
-                                </p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                    As the lead architect and developer, I designed and implemented the entire system from the ground up, including the backend server, mobile apps, and web dashboard.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
-                                    <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Spring Boot</span>
-                                    <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full">ReactJS</span>
-                                    <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">PostgreSQL</span>
-                                    <span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">Docker</span>
-                                    <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs rounded-full">Kubernetes</span>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                                        <i class="fas fa-eye mr-1"></i> Live Demo
-                                    </a>
-                                    <a href="https://github.com/duvu/gpshandle" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
-                                        <i class="fab fa-github mr-1"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="lg:w-1/2">
-                                <div class="grid grid-cols-1 gap-4">
-                                    <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
-                                        <img src="imgs/p_gpshandle/g1.png" alt="GPSHANDLE Dashboard" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
-                                            <img src="imgs/p_gpshandle/g2.png" alt="GPSHANDLE Map View" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
-                                        </div>
-                                        <div class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-600 shadow-md">
-                                            <img src="imgs/p_gpshandle/g3.png" alt="GPSHANDLE Reports" class="w-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <main id="main">
+        <!-- Hero -->
+        <header class="hero" id="top">
+            <div class="container">
+                <div class="hero-grid">
+                    <div>
+                        <div class="status">Available for full-time remote contract · 40 h/week</div>
+                        <h1>Du Quang Vu</h1>
+                        <p class="role">Senior Backend Software Engineer — Java · Spring Boot · Microservices</p>
+                        <p class="lead">I build production backend systems where correctness, consistency and reliability matter: securities trading platforms, banking risk systems, real-time dispatching and AI-driven microservices.</p>
+                        <div class="hero-meta">
+                            <span><i class="fas fa-location-dot" aria-hidden="true"></i>Hanoi, Vietnam (UTC+7) · Remote</span>
+                            <span><i class="fas fa-graduation-cap" aria-hidden="true"></i>B.Eng. Computer Engineering, HUST</span>
                         </div>
-                        
-                        <div class="mt-6 border-t border-gray-200 dark:border-gray-600 pt-4">
-                            <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Key Features:</h4>
-                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1 mb-4">
-                                <li>Real-time GPS tracking with history playback</li>
-                                <li>Geofencing with entry/exit notifications</li>
-                                <li>Driver behavior monitoring and scoring</li>
-                                <li>Fuel consumption analysis and optimization</li>
-                                <li>Maintenance scheduling and alerts</li>
-                                <li>Custom reporting and analytics dashboard</li>
-                                <li>Mobile apps for iOS and Android</li>
+                        <div class="cta">
+                            <a class="btn btn-primary" href="mailto:hoaivubk@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i>Get in touch</a>
+                            <a class="btn" href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+                            <a class="btn" href="https://github.com/duvu" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i>GitHub</a>
+                            <a class="btn" href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" target="_blank" rel="noopener">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg>Upwork
+                            </a>
+                        </div>
+                    </div>
+                    <img class="avatar" src="imgs/profile.png" alt="Portrait of Du Quang Vu" width="168" height="168">
+                </div>
+
+                <div class="facts" role="list">
+                    <div class="fact" role="listitem"><b>15+</b><span>years in software engineering</span></div>
+                    <div class="fact" role="listitem"><b>10+</b><span>years of production Java / Spring Boot</span></div>
+                    <div class="fact" role="listitem"><b>7</b><span>companies across VN, US &amp; AU</span></div>
+                    <div class="fact" role="listitem"><b>7+</b><span>years working remotely with international teams</span></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- About -->
+        <section class="block" id="about">
+            <div class="container">
+                <div class="section-head"><div><div class="eyebrow">01 · About</div><h2>Professional summary</h2></div></div>
+                <div class="about-grid">
+                    <div>
+                        <p>Senior Backend Software Engineer with <strong>15+ years of software engineering experience</strong> and <strong>10+ years of hands-on experience</strong> building production Java/Spring Boot backend systems and distributed applications.</p>
+                        <p>I design, develop, test and maintain <strong>production microservices</strong> using Java, Spring Boot, JPA/Hibernate, Spring Data JPA, Kafka/RabbitMQ, AWS, and relational and NoSQL databases — with a strong background in asynchronous messaging, transactional persistence, automated testing, CI/CD and production troubleshooting.</p>
+                        <p>Recent work includes backend engineering for <strong>securities/trading platforms</strong>, enterprise banking and risk systems, and distributed cloud-native services. I prefer staying hands-on in the code while contributing to architecture and technical decisions.</p>
+                    </div>
+                    <ul class="card focus-list">
+                        <li><i class="fas fa-diagram-project" aria-hidden="true"></i><span>Event-driven microservices with Kafka, RabbitMQ &amp; AWS SQS</span></li>
+                        <li><i class="fas fa-scale-balanced" aria-hidden="true"></i><span>Financial systems where correctness &amp; consistency are critical</span></li>
+                        <li><i class="fas fa-database" aria-hidden="true"></i><span>Transactional persistence with JPA/Hibernate, PostgreSQL, MySQL, MongoDB</span></li>
+                        <li><i class="fas fa-vial-circle-check" aria-hidden="true"></i><span>JUnit 5, Mockito and JaCoCo coverage gates in GitLab CI/CD</span></li>
+                        <li><i class="fas fa-robot" aria-hidden="true"></i><span>Production AI integrations — OpenAI, Gemini, LiteLLM, LangChain</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="block" id="experience">
+            <div class="container">
+                <div class="section-head"><div><div class="eyebrow">02 · Experience</div><h2>Professional experience</h2></div></div>
+                <ol class="timeline">
+                    <li class="job">
+                        <div class="job-when"><b>Apr 2025 – Present</b>Remote</div>
+                        <div>
+                            <h3>AI &amp; Backend Engineer / Solution Architecture</h3>
+                            <div class="company">Lucid-Org</div>
+                            <ul>
+                                <li>Design and implement production backend services for an AI-driven microservices platform on Java, Spring Boot, JPA/Hibernate and PostgreSQL (AWS RDS).</li>
+                                <li>Build event-driven workflows and service integrations with OpenAI, Gemini and LiteLLM for distributed AI automation.</li>
+                                <li>Own quality gates: JUnit 5 / Mockito test suites, JaCoCo coverage enforcement and GitLab CI pipelines on Gradle multi-module builds.</li>
+                                <li>Troubleshoot production issues and improve reliability, performance and resource consumption.</li>
                             </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span><span class="tag">Kafka/RabbitMQ</span><span class="tag">AWS SQS</span><span class="tag">Gradle</span><span class="tag">GitLab CI</span><span class="tag">Docker</span></div>
                         </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>Oct 2023 – Feb 2025</b>Hanoi</div>
+                        <div>
+                            <h3>Senior Backend Developer / Project Manager</h3>
+                            <div class="company">ABS Securities JSC</div>
+                            <ul>
+                                <li>Led backend development for high-volume securities and trading systems built on Java, Spring Boot and microservices.</li>
+                                <li>Built event-driven services with Kafka/RabbitMQ and reliable producers/consumers for business events in production.</li>
+                                <li>Designed transactional persistence for financial workflows with JPA/Hibernate on MySQL/PostgreSQL, plus MongoDB where appropriate.</li>
+                                <li>Managed an end-to-end Apache Flink ETL migration, ensuring data integrity across systems.</li>
+                                <li>Ran Agile Scrum/Kanban delivery while remaining hands-on in backend engineering decisions.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span><span class="tag">Apache Flink</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">JaCoCo</span></div>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>Aug 2022 – Oct 2023</b>Hanoi</div>
+                        <div>
+                            <h3>Senior System Developer</h3>
+                            <div class="company">Esoft Vietnam Ltd.</div>
+                            <ul>
+                                <li>Designed, developed and maintained Java Spring Boot microservices for production enterprise systems.</li>
+                                <li>Built asynchronous processing with Kafka/RabbitMQ, REST APIs and external system integrations.</li>
+                                <li>Integrated automated tests and JaCoCo coverage into GitLab CI/CD; built operational dashboards with Angular and Highcharts.</li>
+                                <li>Automated complex media-processing workflows via Photoshop JavaScript APIs.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Angular</span></div>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>Jun 2019 – Jun 2021</b>Remote</div>
+                        <div>
+                            <h3>IT &amp; Business Consultant</h3>
+                            <div class="company">BlackIce Risk Technologies</div>
+                            <ul>
+                                <li>Delivered enterprise-grade risk management software for major banks in Vietnam, aligned with Basel II requirements.</li>
+                                <li>Developed backend services for financial reporting, risk analytics and business workflows where accuracy was essential.</li>
+                                <li>Built data transformation and reporting solutions with Python and Power BI.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring</span><span class="tag">JPA/Hibernate</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>Jan 2017 – Jun 2019</b>Remote · US</div>
+                        <div>
+                            <h3>Freelance Full-Stack Developer / Team Lead</h3>
+                            <div class="company">Operr Technologies</div>
+                            <ul>
+                                <li>Architected a real-time taxi dispatching platform in New York from concept to production, scaling from 100 to 1,000+ drivers.</li>
+                                <li>Designed Spring Boot microservices with event-driven communication over Kafka/RabbitMQ.</li>
+                                <li>Managed AWS infrastructure and led a 4-member team while staying hands-on.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span><span class="tag">AWS</span><span class="tag">MySQL</span></div>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>Apr 2015 – Aug 2016</b>Remote · Australia</div>
+                        <div>
+                            <h3>Full-Stack Developer / Project Manager</h3>
+                            <div class="company">Smarttrace Technologies</div>
+                            <ul>
+                                <li>Developed backend services for real-time logistics tracking with Java Spring Boot and messaging-based communication.</li>
+                                <li>Integrated IoT devices over TCP/UDP protocols; built frontend components in AngularJS.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">RabbitMQ</span><span class="tag">TCP/UDP</span><span class="tag">IoT</span></div>
+                        </div>
+                    </li>
+                    <li class="job">
+                        <div class="job-when"><b>May 2012 – Apr 2015</b>Hanoi</div>
+                        <div>
+                            <h3>Founder / Lead Developer</h3>
+                            <div class="company">Umaps Vietnam Technology Ltd.</div>
+                            <ul>
+                                <li>Founded and led development of a real-time GPS tracking and fleet management platform.</li>
+                                <li>Owned the full lifecycle — architecture, Java backend, persistence, messaging and deployment.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Java</span><span class="tag">Spring</span><span class="tag">JPA/Hibernate</span><span class="tag">MySQL</span><span class="tag">GPS</span></div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="block" id="skills">
+            <div class="container">
+                <div class="section-head"><div><div class="eyebrow">03 · Skills</div><h2>Core technical skills</h2></div></div>
+                <div class="skills-grid">
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-server" aria-hidden="true"></i>Backend engineering</h3>
+                        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Framework</span><span class="tag">Spring Data JPA</span><span class="tag">JPA / Hibernate</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">Async processing</span></div>
                     </div>
-                </div>
-                
-                <!-- Other existing projects grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
-                        <div class="relative h-48 bg-gradient-to-r from-blue-400 to-indigo-600 dark:from-blue-500 dark:to-indigo-700 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-5xl text-white opacity-75"></i>
-                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Financial Trading System</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Optimized high-frequency trading platform with 5x performance improvement. Reduced order execution time from 500ms to 100ms.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
-                                <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Microservices</span>
-                                <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">FinTech</span>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                                    <i class="fas fa-eye mr-1"></i> Details
-                                </a>
-                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
-                        </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-right-left" aria-hidden="true"></i>Messaging &amp; integration</h3>
+                        <div class="tags"><span class="tag">Apache Kafka</span><span class="tag">RabbitMQ</span><span class="tag">AWS SQS</span><span class="tag">Producers / consumers</span><span class="tag">External APIs &amp; SDKs</span></div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
-                        <div class="relative h-48 bg-gradient-to-r from-green-400 to-teal-600 dark:from-green-500 dark:to-teal-700 flex items-center justify-center">
-                            <i class="fas fa-robot text-5xl text-white opacity-75"></i>
-                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">X51 Simple Trade</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">AI-powered financial news analysis system that provides trading insights based on market sentiment and trend analysis.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Python</span>
-                                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full">NLP</span>
-                                <span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">AI</span>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                                    <i class="fas fa-eye mr-1"></i> Details
-                                </a>
-                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
-                        </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-database" aria-hidden="true"></i>Database &amp; persistence</h3>
+                        <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Oracle</span><span class="tag">SQL</span><span class="tag">Schema migrations</span><span class="tag">Transactions</span></div>
                     </div>
-                    <div class="rounded-lg overflow-hidden shadow-md transition-transform hover:-translate-y-2 hover:shadow-lg">
-                        <div class="relative h-48 bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-600 dark:to-pink-700 flex items-center justify-center">
-                            <i class="fas fa-taxi text-5xl text-white opacity-75"></i>
-                            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                        </div>
-                        <div class="p-4 bg-white dark:bg-gray-700">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">Taxi Dispatching System</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Led development of a scalable taxi dispatching system in New York, growing from 100 to 1000+ drivers with efficient route optimization.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">Java</span>
-                                <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-xs rounded-full">AWS</span>
-                                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs rounded-full">GIS</span>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded text-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                                    <i class="fas fa-eye mr-1"></i> Details
-                                </a>
-                                <a href="#" class="bg-gray-700 dark:bg-gray-600 text-white py-1 px-3 rounded text-sm hover:bg-gray-800 dark:hover:bg-gray-500 transition focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
-                        </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-vial" aria-hidden="true"></i>Testing &amp; quality</h3>
+                        <div class="tags"><span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">Unit testing</span><span class="tag">Integration testing</span><span class="tag">JaCoCo</span><span class="tag">Defect investigation</span></div>
+                    </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-cloud" aria-hidden="true"></i>Build, CI/CD &amp; cloud</h3>
+                        <div class="tags"><span class="tag">Gradle (multi-module)</span><span class="tag">GitLab CI/CD</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">AWS EC2</span><span class="tag">RDS</span><span class="tag">SQS</span><span class="tag">S3</span><span class="tag">CloudWatch</span></div>
+                    </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-sitemap" aria-hidden="true"></i>Architecture</h3>
+                        <div class="tags"><span class="tag">Distributed systems</span><span class="tag">Event-driven</span><span class="tag">High availability</span><span class="tag">Real-time systems</span><span class="tag">Enterprise integration</span><span class="tag">Financial systems</span></div>
+                    </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-brain" aria-hidden="true"></i>AI integration</h3>
+                        <div class="tags"><span class="tag">OpenAI API</span><span class="tag">Gemini API</span><span class="tag">LiteLLM</span><span class="tag">LangChain</span><span class="tag">LlamaIndex</span><span class="tag">AI agents</span></div>
+                    </div>
+                    <div class="card skill-card">
+                        <h3><i class="fas fa-layer-group" aria-hidden="true"></i>Additional</h3>
+                        <div class="tags"><span class="tag">Python</span><span class="tag">TypeScript / JavaScript</span><span class="tag">Node.js</span><span class="tag">Angular</span><span class="tag">Next.js</span><span class="tag">Apache Flink</span><span class="tag">Flutter</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
-                <i class="fas fa-envelope mr-2 text-blue-600 dark:text-blue-400"></i> Contact
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="text-gray-700 dark:text-gray-300">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-envelope w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>Email: contact@duvu.dev</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-github w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>GitHub: <a href="https://github.com/duvu" class="text-blue-600 dark:text-blue-400 hover:underline">github.com/duvu</a></span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-linkedin w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>LinkedIn: <a href="https://www.linkedin.com/in/hoaivubk/" class="text-blue-600 dark:text-blue-400 hover:underline">linkedin.com/in/hoaivubk</a></span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <span class="w-6 h-6 flex items-center justify-center font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">U</span>
-                        <span>Upwork: <a href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" class="text-blue-600 dark:text-blue-400 hover:underline">upwork.com/freelancers/~015f906bc9122ec62f</a></span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <span class="w-6 h-6 flex items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512" class="w-4 h-4 fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg>
-                        </span>
-                        <span>Upwork: <a href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" class="text-blue-600 dark:text-blue-400 hover:underline">upwork.com/freelancers/~015f906bc9122ec62f</a></span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-briefcase w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>Experience: 20+ years in software development</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-code-branch w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>Specialization: FinTech, AI, Cloud Solutions</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-map-marker-alt w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>Location: Hanoi, Vietnam</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-laptop-code w-6 text-blue-600 dark:text-blue-400"></i>
-                        <span>Available for: Freelance, Consulting, Remote Work</span>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Send a Message</h3>
-                    <form id="contact-form" aria-label="Contact form">
-                        <!-- Honeypot field to catch bots -->
-                        <div class="opacity-0 absolute top-0 left-0 h-0 w-0 -z-10 overflow-hidden">
-                            <label for="website">Website (do not fill this in)</label>
-                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        <!-- Projects -->
+        <section class="block" id="projects">
+            <div class="container">
+                <div class="section-head"><div><div class="eyebrow">04 · Projects</div><h2>Selected projects</h2></div></div>
+                <div class="projects">
+                    <article class="card project featured">
+                        <div>
+                            <h3>X51 Simple Trade</h3>
+                            <div class="sub">Personal financial data platform · Apr 2021 – Present</div>
+                            <p>A financial data analysis platform focused on market data, financial news and investment analytics.</p>
+                            <ul>
+                                <li>Data ingestion and processing workflows for financial information from multiple sources.</li>
+                                <li>AI agents that process financial news, market trends and social sentiment.</li>
+                                <li>Proprietary trading-score and financial-analysis features, plus a Flutter mobile app.</li>
+                            </ul>
+                            <div class="tags"><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">Next.js</span><span class="tag">MongoDB</span><span class="tag">LangChain</span><span class="tag">Flutter</span></div>
+                            <div class="links"><a href="https://x51.vn" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> x51.vn</a></div>
                         </div>
-                        
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                placeholder="Enter your name" 
-                                required 
-                                pattern="^[a-zA-ZÀ-ỹ\s]{2,50}$"
-                                title="Name must be 2-50 characters without special characters"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="name-error"></div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                placeholder="Enter your email" 
-                                required 
-                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                title="Please enter a valid email address"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="email-error"></div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                placeholder="Enter your message" 
-                                rows="4" 
-                                required 
-                                minlength="10"
-                                maxlength="500"
-                                title="Message must be 10-500 characters"
-                                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
-                            <div class="hidden text-red-500 dark:text-red-400 text-sm mt-1" id="message-error"></div>
-                            <div class="text-right text-gray-500 dark:text-gray-400 text-xs mt-1">
-                                <span id="message-length">0</span>/500 characters
+                        <div>
+                            <h3>GPSHANDLE</h3>
+                            <div class="sub">GPS tracking &amp; fleet management system</div>
+                            <p>Real-time tracking platform with geofencing, alerts, driver-behaviour scoring, fuel analysis, maintenance scheduling and reporting — backend, web dashboard and mobile apps designed from the ground up.</p>
+                            <div class="shots">
+                                <img src="imgs/p_gpshandle/g1.png" alt="GPSHANDLE dashboard" loading="lazy">
+                                <img src="imgs/p_gpshandle/g2.png" alt="GPSHANDLE map view" loading="lazy">
+                                <img src="imgs/p_gpshandle/g3.png" alt="GPSHANDLE reports" loading="lazy">
                             </div>
                         </div>
-                        <button 
-                            type="submit" 
-                            class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
-                            <i class="fas fa-paper-plane mr-2"></i> Send Message
-                        </button>
-                    </form>
+                    </article>
+                    <article class="card project">
+                        <h3>Securities &amp; trading backends</h3>
+                        <div class="sub">Financial trading systems</div>
+                        <p>High-volume trading services on Spring Boot microservices and Kafka/RabbitMQ. Optimised order execution from ~500 ms to ~100 ms (5× faster) and led an Apache Flink ETL migration.</p>
+                        <div class="tags"><span class="tag">Java</span><span class="tag">Kafka</span><span class="tag">Flink</span><span class="tag">FinTech</span></div>
+                    </article>
+                    <article class="card project">
+                        <h3>Real-time taxi dispatching</h3>
+                        <div class="sub">Operr Technologies (US) · 2017 – 2019</div>
+                        <p>Dispatching platform for New York, built from concept to production by a remote team of 4 and scaled from 100 to 1,000+ drivers on event-driven Spring Boot microservices and AWS.</p>
+                        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">AWS</span><span class="tag">Real-time</span></div>
+                    </article>
+                    <article class="card project">
+                        <h3>Bank risk management</h3>
+                        <div class="sub">BlackIce Risk Technologies · 2019 – 2021</div>
+                        <p>Enterprise risk management and reporting software for major Vietnamese banks, aligned with Basel II, with Python and Power BI analytics.</p>
+                        <div class="tags"><span class="tag">Java</span><span class="tag">Banking</span><span class="tag">Basel II</span><span class="tag">Power BI</span></div>
+                    </article>
+                    <article class="card project">
+                        <h3>AI-driven microservices platform</h3>
+                        <div class="sub">Lucid-Org · 2025 – Present</div>
+                        <p>Spring Boot services orchestrating distributed AI workflows with OpenAI, Gemini and LiteLLM, backed by PostgreSQL on AWS RDS and CI-enforced test coverage.</p>
+                        <div class="tags"><span class="tag">Java</span><span class="tag">AWS</span><span class="tag">LLM APIs</span><span class="tag">JaCoCo</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub -->
+        <section class="block" id="github">
+            <div class="container">
+                <div class="section-head">
+                    <div><div class="eyebrow">05 · GitHub</div><h2>GitHub activity</h2></div>
+                    <a href="https://github.com/duvu" target="_blank" rel="noopener" class="muted"><i class="fab fa-github" aria-hidden="true"></i> github.com/duvu</a>
+                </div>
+                <div class="gh-tiles">
+                    <div class="card gh-tile"><div class="label">Contributions, last 12 months</div><div class="value" data-stat="last_12_months.contributions">—</div><div class="note" id="gh-last-note">&nbsp;</div></div>
+                    <div class="card gh-tile"><div class="label">Total contributions</div><div class="value" data-stat="total_contributions">—</div><div class="note" id="gh-total-note">&nbsp;</div></div>
+                    <div class="card gh-tile"><div class="label">Original public repositories</div><div class="value" data-stat="original_repos">—</div><div class="note" id="gh-repo-note">&nbsp;</div></div>
+                    <div class="card gh-tile"><div class="label">On GitHub since</div><div class="value" id="gh-since">—</div><div class="note" id="gh-org-note">&nbsp;</div></div>
+                </div>
+                <div class="gh-charts">
+                    <div class="card chart-card">
+                        <h3>Contributions per year</h3>
+                        <div class="muted">Commits, pull requests, issues and reviews — including private work</div>
+                        <div class="chart" id="chart-years"></div>
+                        <details class="chart-table"><summary>View as table</summary><table id="table-years"></table></details>
+                    </div>
+                    <div class="card chart-card">
+                        <h3>Primary language</h3>
+                        <div class="muted">Number of original public repositories</div>
+                        <div class="chart" id="chart-langs"></div>
+                        <details class="chart-table"><summary>View as table</summary><table id="table-langs"></table></details>
+                    </div>
+                </div>
+                <p class="gh-foot" id="gh-updated"></p>
+            </div>
+        </section>
+
+        <!-- Education & languages -->
+        <section class="block" id="education">
+            <div class="container">
+                <div class="section-head"><div><div class="eyebrow">06 · Background</div><h2>Education &amp; languages</h2></div></div>
+                <div class="two-col">
+                    <div class="card info-card">
+                        <h3><i class="fas fa-graduation-cap" aria-hidden="true"></i>Education</h3>
+                        <div class="row"><span><b>Bachelor of Computer Engineering</b><br>Hanoi University of Science and Technology</span><span>2003 – 2008</span></div>
+                    </div>
+                    <div class="card info-card">
+                        <h3><i class="fas fa-language" aria-hidden="true"></i>Languages</h3>
+                        <div class="row"><span>Vietnamese</span><span>Native</span></div>
+                        <div class="row"><span>English</span><span>Professional working proficiency (B2)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="block" id="contact">
+            <div class="container">
+                <div class="card contact">
+                    <div>
+                        <div class="eyebrow">07 · Contact</div>
+                        <h2>Let's work together</h2>
+                        <p>Looking for a hands-on senior engineer for Java/Spring Boot backends, distributed systems or financial platforms? Send me a message.</p>
+                        <div class="cta">
+                            <a class="btn btn-primary" href="mailto:hoaivubk@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i>hoaivubk@gmail.com</a>
+                            <a class="btn" href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+                        </div>
+                    </div>
+                    <ul class="engagement">
+                        <li><span>Availability</span><span>Full-time remote contract</span></li>
+                        <li><span>Commitment</span><span>40 hours / week</span></li>
+                        <li><span>Preferred role</span><span>Senior Backend / Java Spring Boot Engineer</span></li>
+                        <li><span>Domains</span><span>Distributed systems, financial platforms, payment services</span></li>
+                        <li><span>Time zone</span><span>UTC+7 (Hanoi)</span></li>
+                    </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="mb-4 md:mb-0">&copy; 2023 Du Vu. All rights reserved.</p>
-                <div class="flex space-x-4">
-                    <a href="https://github.com/duvu" target="_blank" rel="noopener" aria-label="GitHub Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" target="_blank" rel="noopener" aria-label="Upwork Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512" class="w-5 h-5 fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg>
-                    </a>
-                <a href="https://www.facebook.com/dv4238" target="_blank" rel="noopener" aria-label="Facebook Profile" class="text-white hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 p-1 rounded">
-                    <i class="fab fa-facebook text-xl"></i>
-                </a>
+    <footer>
+        <div class="container">
+            <span>&copy; <span id="year">2026</span> Du Quang Vu</span>
+            <div class="socials">
+                <a class="icon-btn" href="https://github.com/duvu" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                <a class="icon-btn" href="https://www.linkedin.com/in/hoaivubk/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a class="icon-btn" href="https://www.upwork.com/freelancers/~015f906bc9122ec62f" target="_blank" rel="noopener" aria-label="Upwork"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 641 512" aria-hidden="true"><path d="M494.7 295.6c-50.3 0-83.5-38.9-92.8-53.9c11.9-95.3 46.8-125.4 92.8-125.4c45.5 0 80.9 36.4 80.9 89.7s-35.4 89.7-80.9 89.7zm0-237.8c-81.9 0-127.8 53.4-141 108.4c-14.9-28-25.9-65.5-34.5-100.3H206v141c0 51.1-23.3 89-68.8 89s-71.6-37.8-71.6-89l.5-141H.8v141c0 41.1 13.3 78.4 37.6 105.1c25 27.5 59.2 41.8 98.8 41.8c78.8 0 133.8-60.4 133.8-146.9V112.1c8.2 31.2 27.8 91.1 65.3 143.6l-35 199.4h66.4l23.1-141.3c7.6 6.3 15.7 12 24.2 17c22.2 14 47.7 21.9 73.9 22.8c0 0 4 .2 6.1 .2c81.2 0 145.9-62.9 145.9-147.8s-64.8-148.1-146-148.1z"/></svg></a>
+                <a class="icon-btn" href="mailto:hoaivubk@gmail.com" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
             </div>
         </div>
-        <div class="mt-6 text-center text-gray-400 dark:text-gray-500 text-sm">
-            <p>Website designed with <i class="fas fa-heart text-red-500"></i> using Tailwind CSS</p>
-            <p class="mt-2">
-                <a href="#home" class="text-gray-400 dark:text-gray-500 hover:text-white dark:hover:text-gray-300 transition">Back to top <i class="fas fa-chevron-up ml-1"></i></a>
-            </p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    // Menu toggle for mobile
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-        document.querySelector('.mobile-menu').classList.toggle('hidden');
-    });
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Fetch GitHub data
-    async function fetchGitHubData() {
-        try {
-            const username = 'duvu';
-            
-            // Check GitHub API rate limit status to debug
-            try {
-                // Check if a personal access token is available
-                const githubToken = localStorage.getItem('github_token');
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                };
-                
-                // Add token to headers if available
-                if (githubToken) {
-                    headers['Authorization'] = `token ${githubToken}`;
-                }
-                
-                const rateResponse = await fetch('https://api.github.com/rate_limit', {
-                    headers: headers
-                });
-                
-                if (rateResponse.ok) {
-                    const rateData = await rateResponse.json();
-                    console.log('GitHub API rate limit status:', rateData.resources);
-                    
-                    // Check if token is valid by comparing rate limits
-                    const coreLimit = rateData.resources.core.limit;
-                    if (githubToken && coreLimit <= 60) {
-                        showDiagnosticInfo(`Your GitHub token may not be valid or may have expired. Current rate limit: ${coreLimit} requests/hour`, 'warning');
-                        localStorage.removeItem('github_token');
-                    }
-                    
-                    // Add message if rate limit is low
-                    if (rateData.resources.core.remaining < 10) {
-                        console.warn('GitHub API rate limit is low. Some data may not load properly.');
-                        showGitHubRateLimitWarning(rateData.resources.core);
-                    }
-                }
-            } catch (error) {
-                console.error('Error checking GitHub rate limit:', error);
-            }
-            
-            // Continue with normal flow
-            // Check for cached data
-            const cachedData = getCachedData('github_user_data');
-            if (cachedData) {
-                console.log('Using cached GitHub user data');
-                displayUserData(cachedData);
-                
-                // Refresh cache in background if older than 1 hour
-                if (isCacheExpired('github_user_data', 60 * 60 * 1000)) {
-                    console.log('Cache expired, refreshing in background');
-                    fetchAndCacheUserData(username);
-                }
-            } else {
-                // No cache, fetch data directly
-                await fetchAndCacheUserData(username);
-            }
-            
-            // Try to display organizations from cache first
-            const cachedOrgs = getCachedData('github_orgs');
-            if (cachedOrgs && cachedOrgs.length > 0) {
-                console.log('Using cached GitHub organizations data');
-                displayOrganizations(cachedOrgs);
-                
-                // Refresh orgs cache in background if older than 3 hours
-                if (isCacheExpired('github_orgs', 3 * 60 * 60 * 1000)) {
-                    // This function will fetch and update the display
-                    fetchAllOrganizationsWithRepos(username);
-                }
-            } else {
-                // Fetch organizations (this will also display them)
-                fetchAllOrganizationsWithRepos(username);
-            }
-            
-            // Handle repositories data
-            const cachedRepos = {
-                user: getCachedData('github_user_repos'),
-                orgs: getCachedData('github_org_repos')
-            };
-            
-            if (cachedRepos.user && cachedRepos.orgs) {
-                console.log('Using cached GitHub repositories data');
-                const allRepos = [...cachedRepos.user, ...cachedRepos.orgs];
-                displayRepositories(allRepos);
-                
-                // Refresh repo cache in background if older than 3 hours
-                if (isCacheExpired('github_user_repos', 3 * 60 * 60 * 1000)) {
-                    refreshRepositoriesInBackground(username);
-                }
-            } else {
-                // No cache, fetch repositories directly
-                const userRepos = await fetchUserRepositories(username);
-                
-                // Note: We're already fetching orgs in fetchAllOrganizationsWithRepos
-                // So we just use its return value or fetch separately if needed
-                let orgRepos = [];
-                const cachedOrgRepos = getCachedData('github_org_repos');
-                
-                if (cachedOrgRepos) {
-                    orgRepos = cachedOrgRepos;
-                } else {
-                    // Fetch all organization repos if not already fetched
-                    const orgReposData = await fetchAllOrganizationsWithRepos(username);
-                    orgRepos = orgReposData.orgRepos || [];
-                }
-                
-                // Combine and display all repositories
-                const allRepos = [...userRepos, ...orgRepos];
-                displayRepositories(allRepos);
-            }
-        } catch (error) {
-            console.error('Error fetching GitHub data:', error);
-            showGitHubFetchError();
-        }
-    }
-    
-    // Cache data in localStorage
-    function cacheData(key, data, timestamp = Date.now()) {
-        try {
-            const cacheObj = {
-                data: data,
-                timestamp: timestamp
-            };
-            localStorage.setItem(key, JSON.stringify(cacheObj));
-            return true;
-        } catch (error) {
-            console.error('Error caching data:', error);
-            return false;
-        }
-    }
-    
-    // Get cached data from localStorage
-    function getCachedData(key) {
-        try {
-            const cachedObj = localStorage.getItem(key);
-            if (!cachedObj) return null;
-            
-            const { data } = JSON.parse(cachedObj);
-            return data;
-        } catch (error) {
-            console.error('Error retrieving cached data:', error);
-            return null;
-        }
-    }
-    
-    // Check if cache is expired
-    function isCacheExpired(key, maxAge) {
-        try {
-            const cachedObj = localStorage.getItem(key);
-            if (!cachedObj) return true;
-            
-            const { timestamp } = JSON.parse(cachedObj);
-            const now = Date.now();
-            
-            return (now - timestamp) > maxAge;
-        } catch (error) {
-            console.error('Error checking cache expiration:', error);
-            return true;
-        }
-    }
-    
-    // Fetch and cache user data
-    async function fetchAndCacheUserData(username) {
-        try {
-            // Check if a personal access token is available
-            const githubToken = localStorage.getItem('github_token');
-            const headers = {
-                'Accept': 'application/vnd.github.v3+json'
-            };
-            
-            // Add token to headers if available
-            if (githubToken) {
-                headers['Authorization'] = `token ${githubToken}`;
-            }
-            
-            const userResponse = await fetch(`https://api.github.com/users/${username}`, {
-                headers: headers
-            });
-            
-            if (userResponse.ok) {
-                const userData = await userResponse.json();
-                console.log('Fetched user data from GitHub API');
-                
-                // Cache the data
-                cacheData('github_user_data', userData);
-                
-                // Display the data
-                displayUserData(userData);
-                return userData;
-            } else {
-                throw new Error(`GitHub API returned ${userResponse.status}`);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-            showGitHubFetchError();
-            return null;
-        }
-    }
-    
-    // Display user data
-    function displayUserData(userData) {
-        document.getElementById('github-followers').textContent = userData.followers;
-        document.getElementById('github-repos').textContent = userData.public_repos;
-    }
-    
-    // Refresh repository data in background
-    async function refreshRepositoriesInBackground(username) {
-        try {
-            console.log('Refreshing repositories data in background');
-            const userRepos = await fetchUserRepositories(username);
-            const { orgs, orgRepos } = await fetchAllOrganizationsWithRepos(username);
-            
-            // Cache the fresh data
-            cacheData('github_user_repos', userRepos);
-            cacheData('github_org_repos', orgRepos);
-            cacheData('github_orgs', orgs);
-            
-            console.log('Repository data refreshed in cache');
-        } catch (error) {
-            console.error('Error refreshing repository data:', error);
-        }
-    }
-    
-    // Show GitHub fetch error
-    function showGitHubFetchError() {
-        const statsSection = document.getElementById('github-stats');
-        if (!statsSection) return;
-        
-        // Check if error message already exists
-        if (document.getElementById('github-fetch-error')) return;
-        
-        const errorDiv = document.createElement('div');
-        errorDiv.id = 'github-fetch-error';
-        errorDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300';
-        errorDiv.innerHTML = `
-            <div class="flex items-center">
-                <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mr-2"></i>
-                <p>Unable to load GitHub data. Showing cached data if available.</p>
-            </div>
-            <button class="mt-2 px-3 py-1 bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 rounded text-sm text-red-700 dark:text-red-300 transition">
-                Try Again
-            </button>
-        `;
-        
-        // Add retry functionality
-        const retryButton = errorDiv.querySelector('button');
-        retryButton.addEventListener('click', () => {
-            errorDiv.remove();
-            fetchGitHubData();
+        // Mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        menuBtn.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open);
         });
-        
-        // Add it to the beginning of the stats section
-        statsSection.insertBefore(errorDiv, statsSection.firstChild);
-    }
-    
-    // Show GitHub rate limit warning
-    function showGitHubRateLimitWarning(rateInfo = null) {
-        const statsSection = document.getElementById('github-stats');
-        if (!statsSection) return;
-        
-        // Check if warning message already exists
-        if (document.getElementById('github-rate-limit-warning')) return;
-        
-        // Format rate limit info if available
-        let rateMessage = '';
-        if (rateInfo) {
-            rateMessage = `<div class="mt-2">
-                <div class="text-sm">Current limit: <span class="font-medium">${rateInfo.limit}</span> requests/hour</div>
-                <div class="text-sm">Remaining: <span class="font-medium">${rateInfo.remaining}</span> requests</div>
-                <div class="text-sm">Resets at: <span class="font-medium">${new Date(rateInfo.reset * 1000).toLocaleTimeString()}</span></div>
-            </div>`;
-        }
-        
-        const warningDiv = document.createElement('div');
-        warningDiv.id = 'github-rate-limit-warning';
-        warningDiv.className = 'mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg text-yellow-700 dark:text-yellow-300';
-        warningDiv.innerHTML = `
-            <div class="flex items-center">
-                <i class="fas fa-exclamation-triangle text-yellow-500 dark:text-yellow-400 mr-2"></i>
-                <p>GitHub API rate limit is low. Some data may not load properly or be incomplete.</p>
-            </div>
-            ${rateMessage}
-            <p class="mt-2 text-sm">Note: GitHub API has a rate limit of 60 requests per hour for unauthenticated users. For higher limits, you can <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" class="underline">create a personal access token</a>.</p>
-        `;
-        
-        // Add it to the beginning of the stats section
-        statsSection.insertBefore(warningDiv, statsSection.firstChild);
-    }
-    
-    // Lấy repositories của người dùng - with caching
-    async function fetchUserRepositories(username) {
-        try {
-            console.log(`Fetching repositories for user: ${username}`);
-            
-            // Check if a personal access token is available
-            const githubToken = localStorage.getItem('github_token');
-            const headers = {
-                'Accept': 'application/vnd.github.v3+json'
-            };
-            
-            // Add token to headers if available
-            if (githubToken) {
-                headers['Authorization'] = `token ${githubToken}`;
+        navLinks.addEventListener('click', e => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
             }
-            
-            const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
-                headers: headers
-            });
-            
-            if (reposResponse.ok) {
-                const reposData = await reposResponse.json();
-                console.log(`Loaded ${reposData.length} user repositories:`, reposData);
-                
-                // Cache the data
-                cacheData('github_user_repos', reposData);
-                
-                // Add source information for each repository
-                reposData.forEach(repo => {
-                    repo.source = 'user';
-                    repo.source_name = username;
-                });
-                
-                return reposData;
-            }
-            console.error(`GitHub API returned status ${reposResponse.status} when fetching user repositories`);
-            return [];
-        } catch (error) {
-            console.error('Error loading user repositories:', error);
-            return [];
-        }
-    }
-    
-    // Get all organizations and their repositories
-    async function fetchAllOrganizationsWithRepos(username) {
-        try {
-            console.log(`Fetching organizations for user: ${username}`);
-            
-            // Check if a personal access token is available in localStorage
-        // Fetch GitHub data
-        async function fetchGitHubData() {
-            try {
-                const username = 'duvu';
-                
-                // Check GitHub API rate limit status to debug
-                try {
-                    // Check if a personal access token is available
-                    const githubToken = localStorage.getItem('github_token');
-                    const headers = {
-                        'Accept': 'application/vnd.github.v3+json'
-                    };
-                    
-                    // Add token to headers if available
-                    if (githubToken) {
-                        headers['Authorization'] = `token ${githubToken}`;
-                    }
-                    
-                    const rateResponse = await fetch('https://api.github.com/rate_limit', {
-                        headers: headers
-                    });
-                    
-                    if (rateResponse.ok) {
-                        const rateData = await rateResponse.json();
-                        console.log('GitHub API rate limit status:', rateData.resources);
-                        
-                        // Check if token is valid by comparing rate limits
-                        const coreLimit = rateData.resources.core.limit;
-                        if (githubToken && coreLimit <= 60) {
-                            showDiagnosticInfo(`Your GitHub token may not be valid or may have expired. Current rate limit: ${coreLimit} requests/hour`, 'warning');
-                            localStorage.removeItem('github_token');
-                        }
-                        
-                        // Add message if rate limit is low
-                        if (rateData.resources.core.remaining < 10) {
-                            console.warn('GitHub API rate limit is low. Some data may not load properly.');
-                            showGitHubRateLimitWarning(rateData.resources.core);
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error checking GitHub rate limit:', error);
-                }
-                
-                // Continue with normal flow
-                // Check for cached data
-                const cachedData = getCachedData('github_user_data');
-                if (cachedData) {
-                    console.log('Using cached GitHub user data');
-                    displayUserData(cachedData);
-                    
-                    // Refresh cache in background if older than 1 hour
-                    if (isCacheExpired('github_user_data', 60 * 60 * 1000)) {
-                        console.log('Cache expired, refreshing in background');
-                        fetchAndCacheUserData(username);
-                    }
-                } else {
-                    // No cache, fetch data directly
-                    await fetchAndCacheUserData(username);
-                }
-                
-                // Try to display organizations from cache first
-                const cachedOrgs = getCachedData('github_orgs');
-                if (cachedOrgs && cachedOrgs.length > 0) {
-                    console.log('Using cached GitHub organizations data');
-                    displayOrganizations(cachedOrgs);
-                    
-                    // Refresh orgs cache in background if older than 3 hours
-                    if (isCacheExpired('github_orgs', 3 * 60 * 60 * 1000)) {
-                        // This function will fetch and update the display
-                        fetchAllOrganizationsWithRepos(username);
-                    }
-                } else {
-                    // Fetch organizations (this will also display them)
-                    fetchAllOrganizationsWithRepos(username);
-                }
-                
-                // Handle repositories data
-                const cachedRepos = {
-                    user: getCachedData('github_user_repos'),
-                    orgs: getCachedData('github_org_repos')
-                };
-                
-                if (cachedRepos.user && cachedRepos.orgs) {
-                    console.log('Using cached GitHub repositories data');
-                    const allRepos = [...cachedRepos.user, ...cachedRepos.orgs];
-                    displayRepositories(allRepos);
-                    
-                    // Refresh repo cache in background if older than 3 hours
-                    if (isCacheExpired('github_user_repos', 3 * 60 * 60 * 1000)) {
-                        refreshRepositoriesInBackground(username);
-                    }
-                } else {
-                    // No cache, fetch repositories directly
-                    const userRepos = await fetchUserRepositories(username);
-                    
-                    // Note: We're already fetching orgs in fetchAllOrganizationsWithRepos
-                    // So we just use its return value or fetch separately if needed
-                    let orgRepos = [];
-                    const cachedOrgRepos = getCachedData('github_org_repos');
-                    
-                    if (cachedOrgRepos) {
-                        orgRepos = cachedOrgRepos;
-                    } else {
-                        // Fetch all organization repos if not already fetched
-                        const orgReposData = await fetchAllOrganizationsWithRepos(username);
-                        orgRepos = orgReposData.orgRepos || [];
-                    }
-                    
-                    // Combine and display all repositories
-                    const allRepos = [...userRepos, ...orgRepos];
-                    displayRepositories(allRepos);
-                }
-            } catch (error) {
-                console.error('Error fetching GitHub data:', error);
-                showGitHubFetchError();
-            }
-        }
-        
-        // Cache data in localStorage
-        function cacheData(key, data, timestamp = Date.now()) {
-            try {
-                const cacheObj = {
-                    data: data,
-                    timestamp: timestamp
-                };
-                localStorage.setItem(key, JSON.stringify(cacheObj));
-                return true;
-            } catch (error) {
-                console.error('Error caching data:', error);
-                return false;
-            }
-        }
-        
-        // Get cached data from localStorage
-        function getCachedData(key) {
-            try {
-                const cachedObj = localStorage.getItem(key);
-                if (!cachedObj) return null;
-                
-                const { data } = JSON.parse(cachedObj);
-                return data;
-            } catch (error) {
-                console.error('Error retrieving cached data:', error);
-                return null;
-            }
-        }
-        
-        // Check if cache is expired
-        function isCacheExpired(key, maxAge) {
-            try {
-                const cachedObj = localStorage.getItem(key);
-                if (!cachedObj) return true;
-                
-                const { timestamp } = JSON.parse(cachedObj);
-                const now = Date.now();
-                
-                return (now - timestamp) > maxAge;
-            } catch (error) {
-                console.error('Error checking cache expiration:', error);
-                return true;
-            }
-        }
-        
-        // Fetch and cache user data
-        async function fetchAndCacheUserData(username) {
-            try {
-                // Check if a personal access token is available
-                const githubToken = localStorage.getItem('github_token');
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                };
-                
-                // Add token to headers if available
-                if (githubToken) {
-                    headers['Authorization'] = `token ${githubToken}`;
-                }
-                
-                const userResponse = await fetch(`https://api.github.com/users/${username}`, {
-                    headers: headers
-                });
-                
-                if (userResponse.ok) {
-                    const userData = await userResponse.json();
-                    console.log('Fetched user data from GitHub API');
-                    
-                    // Cache the data
-                    cacheData('github_user_data', userData);
-                    
-                    // Display the data
-                    displayUserData(userData);
-                    return userData;
-                } else {
-                    throw new Error(`GitHub API returned ${userResponse.status}`);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                showGitHubFetchError();
-                return null;
-            }
-        }
-        
-        // Display user data
-        function displayUserData(userData) {
-            document.getElementById('github-followers').textContent = userData.followers;
-            document.getElementById('github-repos').textContent = userData.public_repos;
-        }
-        
-        // Refresh repository data in background
-        async function refreshRepositoriesInBackground(username) {
-            try {
-                console.log('Refreshing repositories data in background');
-                const userRepos = await fetchUserRepositories(username);
-                const { orgs, orgRepos } = await fetchAllOrganizationsWithRepos(username);
-                
-                // Cache the fresh data
-                cacheData('github_user_repos', userRepos);
-                cacheData('github_org_repos', orgRepos);
-                cacheData('github_orgs', orgs);
-                
-                console.log('Repository data refreshed in cache');
-            } catch (error) {
-                console.error('Error refreshing repository data:', error);
-            }
-        }
-        
-        // Show GitHub fetch error
-        function showGitHubFetchError() {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-            
-            // Check if error message already exists
-            if (document.getElementById('github-fetch-error')) return;
-            
-            const errorDiv = document.createElement('div');
-            errorDiv.id = 'github-fetch-error';
-            errorDiv.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300';
-            errorDiv.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas fa-exclamation-circle text-red-500 dark:text-red-400 mr-2"></i>
-                    <p>Unable to load GitHub data. Showing cached data if available.</p>
-                </div>
-                <button class="mt-2 px-3 py-1 bg-red-100 dark:bg-red-800 hover:bg-red-200 dark:hover:bg-red-700 rounded text-sm text-red-700 dark:text-red-300 transition">
-                    Try Again
-                </button>
-            `;
-            
-            // Add retry functionality
-            const retryButton = errorDiv.querySelector('button');
-            retryButton.addEventListener('click', () => {
-                errorDiv.remove();
-                fetchGitHubData();
-            });
-            
-            // Add it to the beginning of the stats section
-            statsSection.insertBefore(errorDiv, statsSection.firstChild);
-        }
-        
-        // Show GitHub rate limit warning
-        function showGitHubRateLimitWarning(rateInfo = null) {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-            
-            // Check if warning message already exists
-            if (document.getElementById('github-rate-limit-warning')) return;
-            
-            // Format rate limit info if available
-            let rateMessage = '';
-            if (rateInfo) {
-                rateMessage = `<div class="mt-2">
-                    <div class="text-sm">Current limit: <span class="font-medium">${rateInfo.limit}</span> requests/hour</div>
-                    <div class="text-sm">Remaining: <span class="font-medium">${rateInfo.remaining}</span> requests</div>
-                    <div class="text-sm">Resets at: <span class="font-medium">${new Date(rateInfo.reset * 1000).toLocaleTimeString()}</span></div>
-                </div>`;
-            }
-            
-            const warningDiv = document.createElement('div');
-            warningDiv.id = 'github-rate-limit-warning';
-            warningDiv.className = 'mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg text-yellow-700 dark:text-yellow-300';
-            warningDiv.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas fa-exclamation-triangle text-yellow-500 dark:text-yellow-400 mr-2"></i>
-                    <p>GitHub API rate limit is low. Some data may not load properly or be incomplete.</p>
-                </div>
-                ${rateMessage}
-                <p class="mt-2 text-sm">Note: GitHub API has a rate limit of 60 requests per hour for unauthenticated users. For higher limits, you can <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" class="underline">create a personal access token</a>.</p>
-            `;
-            
-            // Add it to the beginning of the stats section
-            statsSection.insertBefore(warningDiv, statsSection.firstChild);
-        }
-        
-        // Lấy repositories của người dùng - with caching
-        async function fetchUserRepositories(username) {
-            try {
-                console.log(`Fetching repositories for user: ${username}`);
-                
-                // Check if a personal access token is available
-                const githubToken = localStorage.getItem('github_token');
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                };
-                
-                // Add token to headers if available
-                if (githubToken) {
-                    headers['Authorization'] = `token ${githubToken}`;
-                }
-                
-                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
-                    headers: headers
-                });
-                
-                if (reposResponse.ok) {
-                    const reposData = await reposResponse.json();
-                    console.log(`Loaded ${reposData.length} user repositories:`, reposData);
-                    
-                    // Cache the data
-                    cacheData('github_user_repos', reposData);
-                    
-                    // Add source information for each repository
-                    reposData.forEach(repo => {
-                        repo.source = 'user';
-                        repo.source_name = username;
-                    });
-                    
-                    return reposData;
-                }
-                console.error(`GitHub API returned status ${reposResponse.status} when fetching user repositories`);
-                return [];
-            } catch (error) {
-                console.error('Error loading user repositories:', error);
-                return [];
-            }
-        }
-        
-        // Get all organizations and their repositories
-        async function fetchAllOrganizationsWithRepos(username) {
-            try {
-                console.log(`Fetching organizations for user: ${username}`);
-                
-                // Check if a personal access token is available in localStorage
-                const githubToken = localStorage.getItem('github_token');
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                };
-                
-                // Add token to headers if available
-                if (githubToken) {
-                    headers['Authorization'] = `token ${githubToken}`;
-                }
-                
-                const orgsResponse = await fetch(`https://api.github.com/users/${username}/orgs?per_page=100`, {
-                    headers: headers
-                });
-                
-                if (orgsResponse.ok) {
-                    const orgsData = await orgsResponse.json();
-                    console.log(`Loaded ${orgsData.length} organizations:`, orgsData);
-                    
-                    // Show message about organization count in the UI
-                    if (orgsData.length === 1) {
-                        showDiagnosticInfo(`Found 1 GitHub organization: "${orgsData[0].login}"`, 'info');
-                    } else if (orgsData.length > 1) {
-                        showDiagnosticInfo(`Found ${orgsData.length} GitHub organizations`, 'info');
-                    } else {
-                        // If no orgs found but we know the user has orgs, show a message about authentication
-                        showDiagnosticInfo(`No organizations found. GitHub may be limiting API access. Consider adding a personal access token for full access.`, 'warning');
-                        
-                        // Add a token input form to the page
-                        addGitHubTokenForm();
-                    }
-                    
-                    // Cache organizations data
-                    cacheData('github_orgs', orgsData);
-                    
-                    // Display organizations immediately
-                    displayOrganizations(orgsData);
-                    
-                    // Get repositories from all organizations
-                    let allOrgRepos = [];
-                    
-                    // Use Promise.all to fetch repositories from all organizations in parallel
-                    const orgReposPromises = orgsData.map(org => fetchOrganizationRepos(org.login, githubToken));
-                    const orgReposResults = await Promise.all(orgReposPromises);
-                    
-                    // Combine all repositories from organizations
-                    orgReposResults.forEach(repos => {
-                        allOrgRepos = [...allOrgRepos, ...repos];
-                    });
-                    
-                    console.log(`Loaded a total of ${allOrgRepos.length} repositories from organizations`);
-                    
-                    return { orgs: orgsData, orgRepos: allOrgRepos };
-                } else if (orgsResponse.status === 401 || orgsResponse.status === 403) {
-                    // Authentication error - possibly need a token
-                    showDiagnosticInfo(`GitHub API access limited. For full access to your organizations, please add a personal access token.`, 'warning');
-                    addGitHubTokenForm();
-                    return { orgs: [], orgRepos: [] };
-                }
-                return { orgs: [], orgRepos: [] };
-            } catch (error) {
-                console.error('Error loading organizations list:', error);
-                // Try to display cached organizations if available
-                const cachedOrgs = getCachedData('github_orgs');
-                if (cachedOrgs && cachedOrgs.length > 0) {
-                    displayOrganizations(cachedOrgs);
-                }
-                return { orgs: [], orgRepos: [] };
-            }
-        }
-        
-        // Fetch organization repositories with optional token
-        async function fetchOrganizationRepos(orgName, token = null) {
-            try {
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                };
-                
-                // Add token to headers if available
-                if (token) {
-                    headers['Authorization'] = `token ${token}`;
-                }
-                
-                const reposResponse = await fetch(`https://api.github.com/orgs/${orgName}/repos?per_page=100`, {
-                    headers: headers
-                });
-                
-                if (reposResponse.ok) {
-                    const reposData = await reposResponse.json();
-                    console.log(`Loaded ${reposData.length} repositories from organization ${orgName}:`, reposData);
-                    
-                    // Add source information for each repository
-                    reposData.forEach(repo => {
-                        repo.source = 'organization';
-                        repo.source_name = orgName;
-                    });
-                    
-                    return reposData;
-                }
-                return [];
-            } catch (error) {
-                console.error(`Error loading repositories from organization ${orgName}:`, error);
-                return [];
-            }
-        }
-        
-        // Add a GitHub token input form
-        function addGitHubTokenForm() {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-            
-            // Check if form already exists
-            if (document.getElementById('github-token-form')) return;
-            
-            const tokenForm = document.createElement('div');
-            tokenForm.id = 'github-token-form';
-            tokenForm.className = 'mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg';
-            tokenForm.innerHTML = `
-                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">GitHub API Access</h4>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
-                    You appear to have more organizations on GitHub than are being displayed.
-                    GitHub API rate limits or visibility restrictions might be preventing access.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300 mb-3">
-                    For full access to all your organizations, you can add a personal access token.
-                    <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" class="text-blue-600 dark:text-blue-400 underline">Learn how to create a token</a>
-                </p>
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <input type="password" id="github-token-input" placeholder="Personal Access Token" 
-                           class="flex-grow px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-                    <button id="github-token-save" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-                        Save & Reload
-                    </button>
-                </div>
-                <p class="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                    Your token is stored only in your browser's localStorage and is not sent anywhere except to GitHub's API.
-                </p>
-            `;
-            
-            statsSection.insertBefore(tokenForm, statsSection.firstChild);
-            
-            // Add event listener for the save button
-            document.getElementById('github-token-save').addEventListener('click', function() {
-                const token = document.getElementById('github-token-input').value.trim();
-                if (token) {
-                    localStorage.setItem('github_token', token);
-                    showNotification('Token saved. Reloading data...', 'success');
-                    
-                    // Clear existing data
-                    localStorage.removeItem('github_orgs');
-                    localStorage.removeItem('github_org_repos');
-                    
-                    // Remove existing sections
-                    const orgsSection = document.getElementById('github-orgs-section');
-                    if (orgsSection) orgsSection.remove();
-                    
-                    const reposSection = document.getElementById('github-repos-section');
-                    if (reposSection) reposSection.remove();
-                    
-                    // Reload data
-                    setTimeout(() => {
-                        tokenForm.remove();
-                        fetchGitHubData();
-                    }, 1000);
-                } else {
-                    showNotification('Please enter a valid token', 'error');
-                }
-            });
-        }
-        
-        // Display repositories information
-        function displayRepositories(repos) {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-            
-            // Remove existing repositories section if present
-            const existingReposSection = document.getElementById('github-repos-section');
-            if (existingReposSection) {
-                existingReposSection.remove();
-            }
-            
-            // Create container element for repositories
-            const reposSection = document.createElement('div');
-            reposSection.id = 'github-repos-section';
-            reposSection.className = 'mt-10';
-            reposSection.innerHTML = `
-                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">All Repositories (${repos.length})</h3>
-                <div class="overflow-auto max-h-96 border border-gray-200 dark:border-gray-700 rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-800 sticky top-0">
-                            <tr>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Repository</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Source</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Stars</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Forks</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Language</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600" id="repos-table-body">
-                        </tbody>
-                    </table>
-                </div>
-            `;
-            
-            statsSection.appendChild(reposSection);
-            
-            // Add data to the table
-            const reposTableBody = document.getElementById('repos-table-body');
-            repos.forEach(repo => {
-                const row = document.createElement('tr');
-                row.className = 'hover:bg-gray-50 dark:hover:bg-gray-600';
-                
-                row.innerHTML = `
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                            ${repo.name}
-                        </a>
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full ${repo.source === 'user' ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-200' : 'bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-200'}">
-                            ${repo.source === 'user' ? 'User' : 'Org:'} ${repo.source_name}
-                        </span>
-                    </td>
-                    <td class="px-4 py-3 text-gray-800 dark:text-gray-300">
-                        ${repo.description ? repo.description : '<span class="text-gray-400 dark:text-gray-500">No description</span>'}
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-800 dark:text-gray-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
-                        </span>
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap text-gray-800 dark:text-gray-300">
-                        <span class="flex items-center">
-                            <i class="fas fa-code-branch text-gray-500 dark:text-gray-400 mr-1"></i> ${repo.forks_count}
-                        </span>
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full ${repo.language ? 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-200' : 'bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-300'}">
-                            ${repo.language || 'N/A'}
-                        </span>
-                    </td>
-                `;
-                
-                reposTableBody.appendChild(row);
-            });
-            
-            // Find number of repositories by source
-            const userReposCount = repos.filter(repo => repo.source === 'user').length;
-            const orgReposCount = repos.filter(repo => repo.source === 'organization').length;
-            
-            // Add repository summary
-            const reposSummary = document.createElement('div');
-            reposSummary.className = 'mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg';
-            reposSummary.innerHTML = `
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="text-center">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Repos</p>
-                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.length} <span class="text-xs text-gray-500 dark:text-gray-400">(User: ${userReposCount}, Org: ${orgReposCount})</span></p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Stars</p>
-                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)}</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">Total Forks</p>
-                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${repos.reduce((sum, repo) => sum + repo.forks_count, 0)}</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-gray-600 dark:text-gray-300 text-sm">Top Language</p>
-                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">${getMostUsedLanguage(repos)}</p>
-                    </div>
-                </div>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Top 5 repositories (by stars)</h4>
-                        <ul class="space-y-1">
-                            ${getTopRepositories(repos, 'stars').map(repo => `
-                                <li class="flex items-center justify-between p-2 bg-white dark:bg-gray-600 rounded-lg border border-gray-200 dark:border-gray-700">
-                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                        ${repo.source_name}/${repo.name}
-                                    </a>
-                                    <span class="flex items-center text-sm text-gray-800 dark:text-gray-300">
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i> ${repo.stargazers_count}
-                                    </span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-medium text-gray-700 dark:text-gray-300 mb-2">Top 5 repositories (by forks)</h4>
-                        <ul class="space-y-1">
-                            ${getTopRepositories(repos, 'forks').map(repo => `
-                                <li class="flex items-center justify-between p-2 bg-white dark:bg-gray-600 rounded-lg border border-gray-200 dark:border-gray-700">
-                                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">
-                                        ${repo.source_name}/${repo.name}
-                                    </a>
-                                    <span class="flex items-center text-sm text-gray-800 dark:text-gray-300">
-                                        <i class="fas fa-code-branch text-gray-500 dark:text-gray-400 mr-1"></i> ${repo.forks_count}
-                                    </span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                </div>
-            `;
-            
-            reposSection.appendChild(reposSummary);
-        }
-        
-        // Lấy top repositories theo tiêu chí
-        function getTopRepositories(repos, criteria, limit = 5) {
-            let sortedRepos = [...repos];
-            
-            if (criteria === 'stars') {
-                sortedRepos.sort((a, b) => b.stargazers_count - a.stargazers_count);
-            } else if (criteria === 'forks') {
-                sortedRepos.sort((a, b) => b.forks_count - a.forks_count);
-            }
-            
-            return sortedRepos.slice(0, limit);
-        }
-        
-        // Display organizations information
-        function displayOrganizations(orgs) {
-            if (!orgs || orgs.length === 0) return;
-            
-            console.log(`Displaying ${orgs.length} organizations`);
-            
-            // Remove existing organizations section if present
-            const existingSection = document.getElementById('github-orgs-section');
-            if (existingSection) {
-                existingSection.remove();
-            }
-            
-            // Create new organizations section
-            const orgsSection = document.createElement('div');
-            orgsSection.id = 'github-orgs-section';
-            orgsSection.className = 'mb-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6';
-            
-            // Add section title
-            orgsSection.innerHTML = `
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-                    <i class="fas fa-building mr-2"></i>GitHub Organizations
-                </h2>
-                <div class="organizations-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                </div>
-            `;
-            
-            // Get the container for organizations
-            const orgsContainer = orgsSection.querySelector('.organizations-container');
-            
-            // Add each organization
-            orgs.forEach(org => {
-                const orgCard = document.createElement('div');
-                orgCard.className = 'org-card bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center transition-transform transform hover:scale-105 hover:shadow-md';
-                
-                // Create organization HTML
-                orgCard.innerHTML = `
-                    <img src="${org.avatar_url}" alt="${org.login}" class="w-12 h-12 rounded-md mr-4">
-                    <div class="flex-grow">
-                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">${org.login}</h3>
-                        <a href="${org.html_url}" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">
-                            <i class="fas fa-external-link-alt mr-1"></i>View on GitHub
-                        </a>
-                    </div>
-                `;
-                
-                // Add to container
-                orgsContainer.appendChild(orgCard);
-            });
-            
-            // Find suitable location to add the section
-            const githubStatsContainer = document.querySelector('.github-stats-container');
-            if (githubStatsContainer) {
-                const existingReposSection = document.getElementById('github-repos-section');
-                if (existingReposSection) {
-                    // Insert before repos section
-                    githubStatsContainer.insertBefore(orgsSection, existingReposSection);
-                } else {
-                    // Add at the end if no repos section
-                    githubStatsContainer.appendChild(orgsSection);
-                }
-            } else {
-                // If no container exists, add to main
-                const mainContainer = document.querySelector('main');
-                if (mainContainer) {
-                    mainContainer.appendChild(orgsSection);
-                }
-            }
-        }
-        
-        // Tìm ngôn ngữ được sử dụng nhiều nhất
-        function getMostUsedLanguage(repos) {
-            const languages = repos.map(repo => repo.language).filter(Boolean);
-            if (languages.length === 0) return 'N/A';
-            
-            const languageCounts = languages.reduce((counts, language) => {
-                counts[language] = (counts[language] || 0) + 1;
-                return counts;
-            }, {});
-            
-            let mostUsedLanguage = '';
-            let maxCount = 0;
-            
-            for (const language in languageCounts) {
-                if (languageCounts[language] > maxCount) {
-                    mostUsedLanguage = language;
-                    maxCount = languageCounts[language];
-                }
-            }
-            
-            return mostUsedLanguage;
-        }
-
-        // Thêm các phần tử để hiển thị thông tin
-        function addGitHubInfoElements() {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'mt-6 flex flex-wrap justify-center gap-6';
-            infoDiv.innerHTML = `
-                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center w-40">
-                    <p class="text-gray-600 dark:text-gray-300">Followers</p>
-                    <p id="github-followers" class="text-2xl font-bold text-blue-600 dark:text-blue-400">-</p>
-                </div>
-                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center w-40">
-                    <p class="text-gray-600 dark:text-gray-300">Repositories</p>
-                    <p id="github-repos" class="text-2xl font-bold text-blue-600 dark:text-blue-400">-</p>
-                </div>
-            `;
-            
-            // Thêm vào sau ảnh đồ thị
-            const lastImgContainer = statsSection.querySelector('.mt-8');
-            if (lastImgContainer) {
-                statsSection.insertBefore(infoDiv, lastImgContainer.nextSibling);
-            } else {
-                statsSection.appendChild(infoDiv);
-            }
-        }
-
-        // Xử lý form liên hệ
-        function setupContactForm() {
-            const form = document.getElementById('contact-form');
-            if (!form) return;
-            
-            // Set up character counter for message
-            const messageField = document.getElementById('message');
-            const messageLength = document.getElementById('message-length');
-            
-            if (messageField && messageLength) {
-                messageField.addEventListener('input', function() {
-                    messageLength.textContent = this.value.length;
-                    
-                    // Add visual feedback based on length
-                    if (this.value.length < 10) {
-                        messageLength.className = 'text-red-500';
-                    } else if (this.value.length > 400) {
-                        messageLength.className = 'text-yellow-600';
-                    } else {
-                        messageLength.className = 'text-green-600';
-                    }
-                });
-            }
-            
-            // Handle form submission with enhanced security
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Reset previous errors
-                clearFormErrors();
-                
-                // Get form data
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
-                const honeypot = document.getElementById('website').value;
-                
-                // Honeypot check - if field is filled, it's likely a bot
-                if (honeypot) {
-                    console.log('Bot detected via honeypot field');
-                    // Pretend success but don't process
-                    simulateSuccessfulSubmission();
-                    return;
-                }
-                
-                // Validate inputs
-                let isValid = true;
-                
-                // Name validation
-                if (!validateName(name)) {
-                    showFieldError('name', 'Name must be 2-50 characters without special characters');
-                    isValid = false;
-                }
-                
-                // Email validation
-                if (!validateEmail(email)) {
-                    showFieldError('email', 'Please enter a valid email address');
-                    isValid = false;
-                }
-                
-                // Message validation
-                if (message.length < 10 || message.length > 500) {
-                    showFieldError('message', 'Message must be 10-500 characters');
-                    isValid = false;
-                }
-                
-                // Check for rapid submission (simple rate limiting)
-                const lastSubmission = localStorage.getItem('last_form_submission');
-                const now = Date.now();
-                
-                if (lastSubmission && (now - parseInt(lastSubmission)) < 30000) {
-                    // Less than 30 seconds since last submission
-                    showNotification('Please wait at least 30 seconds before submitting another message.', 'error');
-                    return;
-                }
-                
-                if (isValid) {
-                    // Proceed with submission
-                    const submitButton = form.querySelector('button[type="submit"]');
-                    const originalButtonText = submitButton.innerHTML;
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
-                    
-                    // Store submission timestamp for rate limiting
-                    localStorage.setItem('last_form_submission', now.toString());
-                    
-                    // Simulate form submission
-                    setTimeout(() => {
-                        showNotification('Thank you! Your message has been sent successfully.', 'success');
-                        
-                        // Reset form
-                        form.reset();
-                        messageLength.textContent = '0';
-                        
-                        // Restore button
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonText;
-                    }, 1500);
-                }
-            });
-            
-            // Helper functions for form validation
-            function validateName(name) {
-                const nameRegex = /^[a-zA-ZÀ-ỹ\s]{2,50}$/;
-                return nameRegex.test(name);
-            }
-            
-            function validateEmail(email) {
-                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                return emailRegex.test(email);
-            }
-            
-            function showFieldError(fieldId, message) {
-                const field = document.getElementById(fieldId);
-                const errorDiv = document.getElementById(`${fieldId}-error`);
-                
-                if (field && errorDiv) {
-                    field.classList.add('border-red-500');
-                    errorDiv.textContent = message;
-                    errorDiv.classList.remove('hidden');
-                }
-            }
-            
-            function clearFormErrors() {
-                const errorFields = ['name', 'email', 'message'];
-                
-                errorFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    const errorDiv = document.getElementById(`${fieldId}-error`);
-                    
-                    if (field && errorDiv) {
-                        field.classList.remove('border-red-500');
-                        errorDiv.classList.add('hidden');
-                    }
-                });
-            }
-            
-            function simulateSuccessfulSubmission() {
-                // We pretend everything is fine to avoid giving feedback to bots
-                setTimeout(() => {
-                    showNotification('Thank you! Your message has been sent successfully.', 'success');
-                    form.reset();
-                }, 1500);
-            }
-        }
-        
-        // Hiển thị thông báo
-        function showNotification(message, type = 'info') {
-            // Tạo phần tử thông báo
-            const notification = document.createElement('div');
-            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transition-all transform translate-y-0 opacity-100 ${
-                type === 'success' ? 'bg-green-600 dark:bg-green-700 text-white' : 
-                type === 'error' ? 'bg-red-600 dark:bg-red-700 text-white' : 
-                'bg-blue-600 dark:bg-blue-700 text-white'
-            }`;
-            notification.style.zIndex = '9999';
-            notification.setAttribute('role', 'alert');
-            
-            // Nội dung thông báo
-            notification.innerHTML = `
-                <div class="flex items-center">
-                    <i class="mr-2 ${
-                        type === 'success' ? 'fas fa-check-circle' : 
-                        type === 'error' ? 'fas fa-exclamation-circle' : 
-                        'fas fa-info-circle'
-                    }"></i>
-                    <span>${message}</span>
-                </div>
-                <button class="absolute top-1 right-1 text-white opacity-70 hover:opacity-100" aria-label="Đóng thông báo">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            
-            // Thêm vào body
-            document.body.appendChild(notification);
-            
-            // Xử lý nút đóng
-            const closeButton = notification.querySelector('button');
-            closeButton.addEventListener('click', function() {
-                notification.classList.replace('translate-y-0', 'translate-y-12');
-                notification.classList.replace('opacity-100', 'opacity-0');
-                setTimeout(() => notification.remove(), 300);
-            });
-            
-            // Auto-close after 5 seconds
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    notification.classList.replace('translate-y-0', 'translate-y-12');
-                    notification.classList.replace('opacity-100', 'opacity-0');
-                    setTimeout(() => notification.remove(), 300);
-                }
-            }, 5000);
-        }
-
-        // Cải thiện accessibility
-        function setupAccessibility() {
-            // Đảm bảo tất cả hình ảnh đều có alt text
-            document.querySelectorAll('img:not([alt])').forEach(img => {
-                img.alt = 'Image';
-            });
-            
-            // Thêm skip to content link cho người dùng bàn phím
-            const skipLink = document.createElement('a');
-            skipLink.href = '#main-content';
-            skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded';
-            skipLink.innerText = 'Skip to main content';
-            document.body.insertBefore(skipLink, document.body.firstChild);
-            
-            // Thêm ID cho main content
-            const mainContent = document.querySelector('main');
-            if (mainContent) {
-                mainContent.id = 'main-content';
-                mainContent.setAttribute('role', 'main');
-            }
-        }
-
-        // Chạy khi trang đã tải
-        document.addEventListener('DOMContentLoaded', function() {
-            addGitHubInfoElements();
-            fetchGitHubData();
-            setupContactForm();
-            setupAccessibility();
-            setupDarkMode();
         });
 
-        // Cài đặt dark mode
-        function setupDarkMode() {
-            const themeToggles = [
-                document.getElementById('theme-toggle'),
-                document.getElementById('mobile-theme-toggle')
-            ].filter(Boolean);
-            
-            const html = document.documentElement;
-            
-            // Kiểm tra nếu đã lưu theme trước đó hoặc sử dụng system preference
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            // Áp dụng theme đã lưu hoặc system preference
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                html.classList.add('dark');
-                themeToggles.forEach(toggle => {
-                    toggle.querySelector('.fa-moon').classList.add('hidden');
-                    toggle.querySelector('.fa-sun').classList.remove('hidden');
-                });
-            } else {
-                html.classList.remove('dark');
-                themeToggles.forEach(toggle => {
-                    toggle.querySelector('.fa-moon').classList.remove('hidden');
-                    toggle.querySelector('.fa-sun').classList.add('hidden');
-                });
-            }
-            
-            // Thêm sự kiện click cho các nút toggle
-            themeToggles.forEach(toggle => {
-                if (!toggle) return;
-                
-                toggle.addEventListener('click', function() {
-                    if (html.classList.contains('dark')) {
-                        // Switch to light mode
-                        html.classList.remove('dark');
-                        localStorage.setItem('theme', 'light');
-                        
-                        // Cập nhật các icon
-                        themeToggles.forEach(t => {
-                            t.querySelector('.fa-moon').classList.remove('hidden');
-                            t.querySelector('.fa-sun').classList.add('hidden');
-                        });
-                    } else {
-                        // Switch to dark mode
-                        html.classList.add('dark');
-                        localStorage.setItem('theme', 'dark');
-                        
-                        // Cập nhật các icon
-                        themeToggles.forEach(t => {
-                            t.querySelector('.fa-moon').classList.add('hidden');
-                            t.querySelector('.fa-sun').classList.remove('hidden');
-                        });
-                    }
-                });
-            });
-            
-            // Lắng nghe thay đổi từ system preference
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.getItem('theme')) {
-                    if (e.matches) {
-                        html.classList.add('dark');
-                        themeToggles.forEach(toggle => {
-                            toggle.querySelector('.fa-moon').classList.add('hidden');
-                            toggle.querySelector('.fa-sun').classList.remove('hidden');
-                        });
-                    } else {
-                        html.classList.remove('dark');
-                        themeToggles.forEach(toggle => {
-                            toggle.querySelector('.fa-moon').classList.remove('hidden');
-                            toggle.querySelector('.fa-sun').classList.add('hidden');
-                        });
-                    }
-                }
-            });
-        }
-
-        // Show diagnostic info in UI
-        function showDiagnosticInfo(message, type = 'info') {
-            const statsSection = document.getElementById('github-stats');
-            if (!statsSection) return;
-            
-            const infoDiv = document.createElement('div');
-            infoDiv.className = `mt-4 p-4 ${
-                type === 'info' ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300' :
-                type === 'warning' ? 'bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 text-yellow-700 dark:text-yellow-300' :
-                'bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'
-            } rounded-lg`;
-            
-            infoDiv.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas ${
-                        type === 'info' ? 'fa-info-circle text-blue-500 dark:text-blue-400' :
-                        type === 'warning' ? 'fa-exclamation-triangle text-yellow-500 dark:text-yellow-400' :
-                        'fa-terminal text-gray-500 dark:text-gray-400'
-                    } mr-2"></i>
-                    <p>${message}</p>
-                </div>
-            `;
-            
-            statsSection.appendChild(infoDiv);
-            
-            // Auto remove after 8 seconds for non-critical messages
-            if (type !== 'warning') {
-                setTimeout(() => {
-                    if (infoDiv && document.body.contains(infoDiv)) {
-                        infoDiv.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-                        setTimeout(() => infoDiv.remove(), 500);
-                    }
-                }, 8000);
-            }
-            
-            return infoDiv;
-        }
-
-        // Initialize when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get GitHub username from meta tag or use default
-            const githubUsername = document.querySelector('meta[name="github-username"]')?.content || 'duvu';
-            
-            // Create GitHub stats container if it doesn't exist
-            let statsContainer = document.querySelector('.github-stats-container');
-            if (!statsContainer) {
-                statsContainer = document.createElement('div');
-                statsContainer.className = 'github-stats-container max-w-4xl mx-auto p-6';
-                
-                // Add loading indicator
-                const loadingDiv = document.createElement('div');
-                loadingDiv.id = 'github-stats-loading';
-                loadingDiv.className = 'flex items-center justify-center my-10 py-10';
-                loadingDiv.innerHTML = `
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
-                    <span class="ml-3 text-gray-600 dark:text-gray-400">Loading GitHub data...</span>
-                `;
-                
-                statsContainer.appendChild(loadingDiv);
-                
-                // Add to main content
-                const mainContent = document.querySelector('main');
-                if (mainContent) {
-                    mainContent.appendChild(statsContainer);
-                }
-            }
-            
-            // Fetch GitHub stats
-            fetchGitHubStats(githubUsername);
+        // Theme toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const isDark = () => {
+            const t = document.documentElement.dataset.theme;
+            return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        };
+        const syncThemeIcon = () => {
+            themeBtn.innerHTML = `<i class="fas fa-${isDark() ? 'sun' : 'moon'}" aria-hidden="true"></i>`;
+        };
+        themeBtn.addEventListener('click', () => {
+            const next = isDark() ? 'light' : 'dark';
+            document.documentElement.dataset.theme = next;
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            syncThemeIcon();
         });
+        syncThemeIcon();
+
+        // GitHub stats — data/github-stats.json is generated by scripts/update_github_stats.py
+        const fmt = n => Number(n).toLocaleString('en-US');
+        const SVG = 'http://www.w3.org/2000/svg';
+        const el = (tag, attrs = {}, text) => {
+            const node = document.createElementNS(SVG, tag);
+            for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+            if (text != null) node.textContent = text;
+            return node;
+        };
+        // Bar with a 4px rounded data-end and a square edge on the baseline
+        const roundedBar = (x, y, w, h, r, horizontal) => {
+            if (horizontal) {
+                r = Math.min(r, h / 2, w);
+                return `M${x},${y}h${w - r}a${r},${r} 0 0 1 ${r},${r}v${h - 2 * r}a${r},${r} 0 0 1 ${-r},${r}h${-(w - r)}z`;
+            }
+            r = Math.min(r, w / 2, h);
+            return `M${x},${y + h}v${-(h - r)}a${r},${r} 0 0 1 ${r},${-r}h${w - 2 * r}a${r},${r} 0 0 1 ${r},${r}v${h - r}z`;
+        };
+
+        // Hover / focus tooltip anchored to a point in viewBox coordinates
+        function attachTooltip(container, svg, hit, bar, text, anchor) {
+            let tip = container.querySelector('.tooltip');
+            if (!tip) {
+                tip = document.createElement('div');
+                tip.className = 'tooltip';
+                container.appendChild(tip);
+            }
+            const show = () => {
+                const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+                tip.textContent = text;
+                tip.style.left = `${anchor.x * scale}px`;
+                tip.style.top = `${anchor.y * scale}px`;
+                tip.classList.add('show');
+                bar.classList.add('active');
+            };
+            const hide = () => {
+                tip.classList.remove('show');
+                bar.classList.remove('active');
+            };
+            hit.addEventListener('mouseenter', show);
+            hit.addEventListener('mouseleave', hide);
+            hit.addEventListener('focus', show);
+            hit.addEventListener('blur', hide);
+        }
+
+        function columnChart(container, rows, label) {
+            const W = 600, H = 240, pad = { t: 22, r: 4, b: 22, l: 4 };
+            const max = Math.max(...rows.map(r => r.value));
+            const step = (W - pad.l - pad.r) / rows.length;
+            const bw = Math.min(30, step - 2);
+            const baseY = H - pad.b;
+            const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': label });
+            svg.appendChild(el('line', { x1: pad.l, x2: W - pad.r, y1: baseY, y2: baseY, class: 'baseline' }));
+            const peak = rows.reduce((a, b) => (b.value > a.value ? b : a));
+            const first = rows[0], latest = rows[rows.length - 1];
+            rows.forEach((r, i) => {
+                const cx = pad.l + step * i + step / 2;
+                const h = r.value ? Math.max((baseY - pad.t) * r.value / max, 2) : 0;
+                const top = baseY - h;
+                const hit = el('rect', { x: cx - step / 2, y: 0, width: step, height: H, class: 'hit', tabindex: 0, 'aria-label': `${r.label}: ${fmt(r.value)} contributions` });
+                const bar = el('path', { d: roundedBar(cx - bw / 2, top, bw, h, 4, false), class: 'bar' });
+                svg.append(hit, bar);
+                svg.appendChild(el('text', { x: cx, y: H - 4, 'text-anchor': 'middle' }, `'${String(r.label).slice(2)}`));
+                if (r === peak || r === latest || r === first) {
+                    svg.appendChild(el('text', { x: cx, y: top - 6, 'text-anchor': 'middle', class: 'val' }, fmt(r.value)));
+                }
+                attachTooltip(container, svg, hit, bar, `${r.label} · ${fmt(r.value)} contributions`, { x: cx, y: top });
+            });
+            container.appendChild(svg);
+        }
+
+        function barChart(container, rows, label) {
+            const W = 360, rowH = 30, labelW = 86, valueW = 28;
+            const H = rows.length * rowH;
+            const max = Math.max(...rows.map(r => r.value));
+            const span = W - labelW - valueW;
+            const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': label });
+            rows.forEach((r, i) => {
+                const yTop = i * rowH;
+                const w = Math.max(span * r.value / max, 2);
+                const hit = el('rect', { x: 0, y: yTop, width: W, height: rowH, class: 'hit', tabindex: 0, 'aria-label': `${r.label}: ${r.value} repositories` });
+                const bar = el('path', { d: roundedBar(labelW, yTop + 8, w, rowH - 16, 4, true), class: 'bar' });
+                svg.append(hit, bar);
+                svg.appendChild(el('text', { x: 0, y: yTop + rowH / 2 + 4 }, r.label));
+                svg.appendChild(el('text', { x: labelW + w + 6, y: yTop + rowH / 2 + 4, class: 'val' }, r.value));
+                attachTooltip(container, svg, hit, bar, `${r.label} · ${r.value} repositories`, { x: labelW + w / 2, y: yTop + 6 });
+            });
+            container.appendChild(svg);
+        }
+
+        function fillTable(table, head, rows) {
+            table.innerHTML = `<thead><tr><th>${head[0]}</th><th>${head[1]}</th></tr></thead><tbody>` +
+                rows.map(r => `<tr><td>${r.label}</td><td>${fmt(r.value)}</td></tr>`).join('') + '</tbody>';
+        }
+
+        async function loadGitHubStats() {
+            try {
+                const res = await fetch('data/github-stats.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const s = await res.json();
+
+                document.querySelectorAll('[data-stat]').forEach(node => {
+                    const v = node.dataset.stat.split('.').reduce((o, k) => o?.[k], s);
+                    if (typeof v === 'number') node.textContent = fmt(v);
+                });
+                const l = s.last_12_months;
+                document.getElementById('gh-last-note').textContent = `${fmt(l.commits)} commits · ${fmt(l.pull_requests)} PRs · ${fmt(l.issues)} issues`;
+                const active = s.contributions_by_year.filter(y => y.contributions > 0);
+                document.getElementById('gh-total-note').textContent = `across ${active.length} active years`;
+                document.getElementById('gh-repo-note').textContent = `${fmt(s.public_repos)} public incl. forks`;
+                document.getElementById('gh-since').textContent = s.member_since.slice(0, 4);
+                document.getElementById('gh-org-note').textContent = `member of ${s.organizations} organizations`;
+
+                const years = s.contributions_by_year.filter(y => y.year >= 2015).map(y => ({ label: y.year, value: y.contributions }));
+                columnChart(document.getElementById('chart-years'), years, 'Contributions per year');
+                fillTable(document.getElementById('table-years'), ['Year', 'Contributions'], years);
+
+                const langs = s.languages_by_repo.slice(0, 6).map(x => ({ label: x.name, value: x.repos }));
+                barChart(document.getElementById('chart-langs'), langs, 'Primary language of original public repositories');
+                fillTable(document.getElementById('table-langs'), ['Language', 'Repositories'], langs);
+
+                const updated = new Date(`${s.generated_at}T00:00:00`);
+                document.getElementById('gh-updated').textContent =
+                    `Source: GitHub API · updated ${updated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}.`;
+            } catch (e) {
+                console.error('Could not load GitHub stats:', e);
+                document.getElementById('github').hidden = true;
+                document.querySelector('.nav-links a[href="#github"]')?.parentElement.remove();
+            }
+        }
+        loadGitHubStats();
     </script>
 </body>
-</html> 
+</html>

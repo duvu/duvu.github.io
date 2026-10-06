@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-10-06",
+  "member_since": "2009-08-02",
+  "public_repos": 110,
+  "original_repos": 59,
+  "followers": 32,
+  "organizations": 13,
+  "total_contributions": 23051,
+  "last_12_months": {
+    "contributions": 8405,
+    "commits": 907,
+    "pull_requests": 128,
+    "issues": 175,
+    "repositories": 11
+  },
+  "contributions_by_year": [
+    {
+      "year": 2009,
+      "contributions": 1
+    },
+    {
+      "year": 2010,
+      "contributions": 0
+    },
+    {
+      "year": 2011,
+      "contributions": 0
+    },
+    {
+      "year": 2012,
+      "contributions": 0
+    },
+    {
+      "year": 2013,
+      "contributions": 0
+    },
+    {
+      "year": 2014,
+      "contributions": 16
+    },
+    {
+      "year": 2015,
+      "contributions": 72
+    },
+    {
+      "year": 2016,
+      "contributions": 1695
+    },
+    {
+      "year": 2017,
+      "contributions": 1477
+    },
+    {
+      "year": 2018,
+      "contributions": 2703
+    },
+    {
+      "year": 2019,
+      "contributions": 1146
+    },
+    {
+      "year": 2020,
+      "contributions": 860
+    },
+    {
+      "year": 2021,
+      "contributions": 591
+    },
+    {
+      "year": 2022,
+      "contributions": 585
+    },
+    {
+      "year": 2023,
+      "contributions": 1262
+    },
+    {
+      "year": 2024,
+      "contributions": 1202
+    },
+    {
+      "year": 2025,
+      "contributions": 4437
+    },
+    {
+      "year": 2026,
+      "contributions": 7004
+    }
+  ],
+  "languages_by_repo": [
+    {
+      "name": "Java",
+      "repos": 24
+    },
+    {
+      "name": "TypeScript",
+      "repos": 11
+    },
+    {
+      "name": "Python",
+      "repos": 8
+    },
+    {
+      "name": "HTML",
+      "repos": 2
+    },
+    {
+      "name": "Dart",
+      "repos": 2
+    },
+    {
+      "name": "JavaScript",
+      "repos": 2
+    },
+    {
+      "name": "C++",
+      "repos": 1
+    },
+    {
+      "name": "SCSS",
+      "repos": 1
+    }
+  ]
+}
